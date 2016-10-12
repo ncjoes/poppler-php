@@ -1,0 +1,30 @@
+{
+  "name": "ncjoes/php-pdf-suite",
+  "description": "PDF utilities suite for PHP using Poppler-utils",
+  "keywords": ["PDF", "PHP-PDF", "PDF-HTML", "PDF-SVG", "PDF-JPG", "PDF-PNG", "Poppler-utils"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Chukwuemeka Nwobodo",
+      "email": "jc.nwobodo@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.5.9",
+    "paquettg/php-html-parser": "~1",
+    "illuminate/config": "~5"
+  },
+  "require-dev":{
+    "phpunit/phpunit":"~4"
+  },
+
+  "autoload": {
+    "psr-0": {
+      "NcJoes": "src"
+    },
+    "psr-4": {
+      "NcJoes\\PhpPdfSuite\\": "src/"
+    }
+  }
+}
