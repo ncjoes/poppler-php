@@ -20,8 +20,8 @@ With the `NcJoes\PdfInfo` class, you can query meta-data of any pdf file.
 
 When you are in your active directory apps, you can just run this command to add this package on your app
 
-```
-	composer require gufy/pdftohtml-php:~2
+```shell
+composer require ncjoes/php-pdf-suite:dev-master
 ```
 
 Or add this package to your `composer.json`
