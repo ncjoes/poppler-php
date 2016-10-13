@@ -9,22 +9,22 @@ class PdfInfoTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        Config::set('poppler.bin_dir', realpath(dirname(__FILE__).'/../vendor/bin/poppler'));
+        Config::set('poppler.bin_dir', realpath(dirname(__FILE__).'\..\vendor\bin\poppler'));
     }
 
     public function testGetInfo()
     {
-        $file = dirname(__FILE__).'/source/test1.pdf';
+        $file = realpath(dirname(__FILE__).'\source\test1.pdf');
         $pdf_info = new PdfInfo($file);
 
-        print_r($pdf_info->getInfo());
-
+        //print_r($pdf_info->getInfo());
         $this->assertArrayHasKey('pages', $pdf_info->getInfo());
+        $this->addToAssertionCount(sizeof($pdf_info->getInfo()));
     }
 
     public function testGetters()
     {
-        $file = dirname(__FILE__).'/source/test1.pdf';
+        $file = dirname(__FILE__).'\source\test1.pdf';
         $pdf_info = new PdfInfo($file);
 
         $info = [
@@ -38,14 +38,14 @@ class PdfInfoTest extends PHPUnit_Framework_TestCase
             'Page Size'         => $pdf_info->getPageSize(),
             'PDF Version'       => $pdf_info->getPdfVersion(),
             'Producer'          => $pdf_info->getProducer(),
-            'Shell Reports'     => $pdf_info->getSyntaxError(),
-            'Is Tagged?'        => $pdf_info->isTagged(),
-            'Is Optimized'      => $pdf_info->isOptimized(),
+            'Is Tagged?'        => (int)$pdf_info->isTagged(),
+            'Is Optimized'      => (int)$pdf_info->isOptimized(),
             'Page Width'        => $pdf_info->getPageWidth(),
             'Page Height'       => $pdf_info->getPageHeight(),
             'Unit'              => $pdf_info->getSizeUnit()
         ];
 
-        var_dump($info);
+        //print_r($info);
+        $this->addToAssertionCount(sizeof($info));
     }
 }

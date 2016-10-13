@@ -85,13 +85,6 @@ class PdfInfo extends PopplerUtil
         return isset($this->pdf_info['moddate']) ? $this->pdf_info['moddate'] : null;
     }
 
-    public function getSyntaxError()
-    {
-        $this->checkInfo();
-
-        return isset($this->pdf_info['syntax_error']) ? $this->pdf_info['syntax_error'] : null;
-    }
-
     public function isTagged()
     {
         $this->checkInfo();
