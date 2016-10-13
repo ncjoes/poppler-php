@@ -13,7 +13,7 @@ use NcJoes\PhpPdfSuite\Constants as C;
 
 trait VersionFlags
 {
-    public function versionFlags()
+    protected function versionFlags()
     {
         return [C::_V];
     }

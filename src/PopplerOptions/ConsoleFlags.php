@@ -16,12 +16,12 @@ trait ConsoleFlags
     use HelpFlags;
     use VersionFlags;
 
-    public function consoleFlags()
+    protected function consoleFlags()
     {
         return [C::_Q, C::_STDOUT];
     }
 
-    public function allConsoleFlags()
+    protected function allConsoleFlags()
     {
         return array_merge(
             $this->consoleFlags(),
@@ -37,6 +37,6 @@ trait ConsoleFlags
 
     public function outputToConsole()
     {
-        $this->setFlag(C::_STDOUT);
+        return $this->setFlag(C::_STDOUT);
     }
 }

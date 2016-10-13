@@ -13,14 +13,14 @@ use NcJoes\PhpPdfSuite\Constants as C;
 
 trait EncodingOptions
 {
-    public function encodingOptions()
+    protected function encodingOptions()
     {
         return [
             C::_ENC => C::T_STRING
         ];
     }
 
-    public function encodingFlags()
+    protected function encodingFlags()
     {
         return [C::_LISTENC];
     }

@@ -13,7 +13,7 @@ use NcJoes\PhpPdfSuite\Constants as C;
 
 trait DateFlags
 {
-    public function dateFlags()
+    protected function dateFlags()
     {
         return [C::_ISODATES, C::_RAWDATE];
     }

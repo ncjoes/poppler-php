@@ -13,7 +13,7 @@ use NcJoes\PhpPdfSuite\Constants as C;
 
 trait HtmlOptions
 {
-    public function htmlFlags()
+    protected function htmlFlags()
     {
         return [
             C::_P,
@@ -29,7 +29,7 @@ trait HtmlOptions
         ];
     }
 
-    public function htmlOptions()
+    protected function htmlOptions()
     {
         return [
             C::_ZOOM => C::T_DOUBLE,

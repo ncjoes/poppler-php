@@ -13,7 +13,7 @@ use NcJoes\PhpPdfSuite\Constants as C;
 
 trait PageRangeOptions
 {
-    public function pageRangeOptions()
+    protected function pageRangeOptions()
     {
         return [
             C::_F => C::T_INTEGER,
@@ -21,7 +21,7 @@ trait PageRangeOptions
         ];
     }
 
-    public function pageRangeFlags()
+    protected function pageRangeFlags()
     {
         return [C::_ODD_ONLY, C::_EVEN_ONLY, C::_SINGLE_FILE];
     }

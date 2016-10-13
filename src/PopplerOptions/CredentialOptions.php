@@ -13,7 +13,7 @@ use NcJoes\PhpPdfSuite\Constants as C;
 
 trait CredentialOptions
 {
-    public function credentialOptions()
+    protected function credentialOptions()
     {
         return [
             C::_OPW => C::T_STRING,

@@ -13,7 +13,7 @@ use NcJoes\PhpPdfSuite\Constants as C;
 
 trait HelpFlags
 {
-    public function helpFlags()
+    protected function helpFlags()
     {
         return [C::_H, C::_HELP, C::_HELP_, C::_HELP_Q];
     }
