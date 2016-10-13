@@ -35,4 +35,19 @@ trait PageRangeOptions
     {
         return $this->setOption(C::_L, $page);
     }
+
+    public function oddPagesOnly()
+    {
+        return $this->setFlag(C::_ODD_ONLY);
+    }
+
+    public function evenPagesOnly()
+    {
+        return $this->setFlag(C::_EVEN_ONLY);
+    }
+
+    public function firstPageOnly()
+    {
+        return $this->setFlag(C::_SINGLE_FILE);
+    }
 }
