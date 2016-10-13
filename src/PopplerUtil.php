@@ -44,7 +44,7 @@ abstract class PopplerUtil
         return $this->outputDir(dirname($pdfFile));
     }
 
-    protected function setOption($key, $value)
+    public function setOption($key, $value)
     {
         $util_options = $this->utilOptions();
 
@@ -54,7 +54,7 @@ abstract class PopplerUtil
         return $this;
     }
 
-    protected function unsetOption($key)
+    public function unsetOption($key)
     {
         if ($this->hasOption($key))
             $this->options = array_except($this->options, $key);
@@ -62,7 +62,7 @@ abstract class PopplerUtil
         return $this;
     }
 
-    protected function setFlag($key)
+    public function setFlag($key)
     {
         $util_flags = $this->utilFlags();
 
@@ -72,7 +72,7 @@ abstract class PopplerUtil
         return $this;
     }
 
-    protected function unsetFlag($key)
+    public function unsetFlag($key)
     {
         if ($this->hasFlag($key))
             $this->flags = array_except($this->flags, $key);
@@ -80,22 +80,22 @@ abstract class PopplerUtil
         return $this;
     }
 
-    protected function option($key)
+    public function option($key)
     {
         return $this->hasOption($key) ? $this->options[ $key ] : null;
     }
 
-    protected function flag($key)
+    public function flag($key)
     {
         return $this->hasFlag($key) ? $this->flags[ $key ] : null;
     }
 
-    protected function hasOption($key)
+    public function hasOption($key)
     {
         return array_key_exists($key, $this->options);
     }
 
-    protected function hasFlag($key)
+    public function hasFlag($key)
     {
         return array_key_exists($key, $this->flags);
     }
