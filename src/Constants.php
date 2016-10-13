@@ -76,8 +76,9 @@ class Constants
     const _CROP_HEIGHT = '-H';
     const _CROP_SQUARE = '-sz';
     const _CROP_BOX    = '-cropbox';
+    const _NO_CROP     = '-nocrop';
     const _MONO        = '-mono';
-    const _GREY        = '-grey';
+    const _GRAY        = '-gray';
     const _TRANSP      = '-transp';
     const _ANTI_ALIAS  = '-antialias';
     const _ICC         = '-icc';
@@ -89,4 +90,5 @@ class Constants
     const T_INTEGER = 'integer';
     const T_DOUBLE  = 'double';
 
+    const DS = '\\';
 }
