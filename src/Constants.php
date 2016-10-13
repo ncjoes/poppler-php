@@ -38,9 +38,25 @@ class Constants
     const _HELP     = '-help';
     const _HELP_    = '--help';
     const _HELP_Q   = '-?';
+    const _Q        = '-q';
+    const _STDOUT   = '-stdout';
+    const _P        = '-p';
+    const _C        = '-c';
+    const _S        = '-s';
+    const _I        = '-i';
+    const _NOFRAMES = '-noframes';
+    const _ZOOM     = '-zoom';
+    const _XML      = '-xml';
+    const _HIDDEN   = '-hidden';
+    const _NOMERGE  = '-nomerge';
+    const _FMT      = '-fmt';
+    const _NODRM    = '-nodrm';
+    const _WBT      = '-wbt';
+    const _FONT_FN  = '-fontfullname';
 
     //Poppler Option DataTypes
     const T_STRING  = 'string';
     const T_INTEGER = 'integer';
+    const T_DOUBLE  = 'double';
 
 }
