@@ -15,12 +15,14 @@ use NcJoes\PhpPdfSuite\PopplerOptions\DateFlags;
 use NcJoes\PhpPdfSuite\PopplerOptions\EncodingOptions;
 use NcJoes\PhpPdfSuite\PopplerOptions\HelpFlags;
 use NcJoes\PhpPdfSuite\PopplerOptions\PageRangeOptions;
+use NcJoes\PhpPdfSuite\PopplerOptions\VersionFlags;
 
 class PdfInfo extends PopplerUtil
 {
     use CredentialOptions;
     use DateFlags;
     use EncodingOptions;
+    use VersionFlags;
     use HelpFlags;
     use PageRangeOptions;
 
@@ -201,6 +203,7 @@ class PdfInfo extends PopplerUtil
         return array_merge(
             $this->dateFlags(),
             $this->encodingFlags(),
+            $this->versionFlags(),
             $this->helpFlags()
         );
     }

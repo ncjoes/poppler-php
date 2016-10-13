@@ -17,4 +17,9 @@ trait VersionFlags
     {
         return [C::_V];
     }
+
+    public function printVersionInfo()
+    {
+        return $this->setFlag(C::_V);
+    }
 }
