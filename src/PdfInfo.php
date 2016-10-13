@@ -10,28 +10,26 @@
 namespace NcJoes\PhpPdfSuite;
 
 use NcJoes\PhpPdfSuite\Constants as C;
+use NcJoes\PhpPdfSuite\PopplerOptions\ConsoleFlags;
 use NcJoes\PhpPdfSuite\PopplerOptions\CredentialOptions;
 use NcJoes\PhpPdfSuite\PopplerOptions\DateFlags;
 use NcJoes\PhpPdfSuite\PopplerOptions\EncodingOptions;
-use NcJoes\PhpPdfSuite\PopplerOptions\HelpFlags;
 use NcJoes\PhpPdfSuite\PopplerOptions\PageRangeOptions;
-use NcJoes\PhpPdfSuite\PopplerOptions\VersionFlags;
 
 class PdfInfo extends PopplerUtil
 {
     use CredentialOptions;
     use DateFlags;
     use EncodingOptions;
-    use VersionFlags;
-    use HelpFlags;
     use PageRangeOptions;
+    use ConsoleFlags;
 
     private $pdf_info;
 
     public function __construct($pdfFile, array $options = [])
     {
         parent::__construct($pdfFile, $options);
-        $this->use_output_dir = false;
+        $this->require_output_dir = false;
         $this->bin_file = C::PDF_INFO;
     }
 
@@ -203,8 +201,7 @@ class PdfInfo extends PopplerUtil
         return array_merge(
             $this->dateFlags(),
             $this->encodingFlags(),
-            $this->versionFlags(),
-            $this->helpFlags()
+            $this->allConsoleFlags()
         );
     }
 
