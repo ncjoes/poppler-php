@@ -26,7 +26,8 @@ trait ConsoleFlags
         return array_merge(
             $this->consoleFlags(),
             $this->helpFlags(),
-            $this->versionFlags());
+            $this->versionFlags()
+        );
     }
 
     public function suppressConsoleOutput()

@@ -16,8 +16,8 @@ trait PageRangeOptions
     public function pageRangeOptions()
     {
         return [
-            [C::_F => C::T_INTEGER],
-            [C::_L => C::T_INTEGER]
+            C::_F => C::T_INTEGER,
+            C::_L => C::T_INTEGER
         ];
     }
 
