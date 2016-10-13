@@ -48,7 +48,7 @@ abstract class PopplerUtil
     {
         $util_options = $this->utilOptions();
 
-        if (array_key_exists($util_options, $key) and $util_options[ $value ] == gettype($value))
+        if (array_key_exists($key, $util_options) and $util_options[ $value ] == gettype($value))
             $this->options[ $key ] = $value;
 
         return $this;
@@ -56,7 +56,7 @@ abstract class PopplerUtil
 
     public function unsetOption($key)
     {
-        if (array_key_exists($this->options, $key))
+        if ($this->hasOption($key))
             $this->options = array_except($this->options, $key);
 
         return $this;
@@ -66,7 +66,7 @@ abstract class PopplerUtil
     {
         $util_flags = $this->utilFlags();
 
-        if (array_key_exists($util_flags, $key) and !in_array($key, $this->flags))
+        if (array_key_exists($key, $util_flags))
             $this->flags[ $key ] = $key;
 
         return $this;
@@ -74,10 +74,30 @@ abstract class PopplerUtil
 
     public function unsetFlag($key)
     {
-        if (array_key_exists($this->flags, $key))
+        if ($this->hasFlag($key))
             $this->flags = array_except($this->flags, $key);
 
         return $this;
+    }
+
+    public function option($key)
+    {
+        return $this->hasOption($key) ? $this->options[ $key ] : null;
+    }
+
+    public function flag($key)
+    {
+        return $this->hasFlag($key) ? $this->flags[ $key ] : null;
+    }
+
+    public function hasOption($key)
+    {
+        return array_key_exists($key, $this->options);
+    }
+
+    public function hasFlag($key)
+    {
+        return array_key_exists($key, $this->flags);
     }
 
     public function outputDir($dir = '')
