@@ -16,7 +16,7 @@ trait EncodingOptions
     public function encodingOptions()
     {
         return [
-            [C::_ENC => C::T_STRING]
+            C::_ENC => C::T_STRING
         ];
     }
 

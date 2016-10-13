@@ -21,13 +21,18 @@ trait PageRangeOptions
         ];
     }
 
+    public function pageRangeFlags()
+    {
+        return [C::_ODD_ONLY, C::_EVEN_ONLY, C::_SINGLE_FILE];
+    }
+
     public function startFromPage($page)
     {
-        return $this->setOption(C::_F);
+        return $this->setOption(C::_F, $page);
     }
 
     public function stopAtPage($page)
     {
-        return $this->setOption(C::_L);
+        return $this->setOption(C::_L, $page);
     }
 }

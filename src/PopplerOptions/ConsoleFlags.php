@@ -18,10 +18,13 @@ trait ConsoleFlags
 
     public function consoleFlags()
     {
+        return [C::_Q, C::_STDOUT];
+    }
+
+    public function allConsoleFlags()
+    {
         return array_merge(
-            [
-                C::_Q, C::_STDOUT,
-            ],
+            $this->consoleFlags(),
             $this->helpFlags(),
             $this->versionFlags());
     }

@@ -32,9 +32,9 @@ trait HtmlOptions
     public function htmlOptions()
     {
         return [
-            [C::_ZOOM => C::T_DOUBLE],
-            [C::_FMT => C::T_STRING],
-            [C::_WBT => C::T_DOUBLE],
+            C::_ZOOM => C::T_DOUBLE,
+            C::_FMT => C::T_STRING,
+            C::_WBT => C::T_DOUBLE,
         ];
     }
 

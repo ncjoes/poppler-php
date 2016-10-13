@@ -16,8 +16,8 @@ trait CredentialOptions
     public function credentialOptions()
     {
         return [
-            [C::_OPW => C::T_STRING],
-            [C::_UPW => C::T_STRING]
+            C::_OPW => C::T_STRING,
+            C::_UPW => C::T_STRING
         ];
     }
 
