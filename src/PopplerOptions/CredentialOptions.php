@@ -20,4 +20,25 @@ trait CredentialOptions
             [C::_UPW => C::T_STRING]
         ];
     }
+
+    public function setOwnerPassword($pswd)
+    {
+        return $this->setOption(C::_OPW, $pswd);
+    }
+
+    public function unsetOwnerPassword()
+    {
+        return $this->unsetOption(C::_OPW);
+    }
+
+    public function setUserPassword($pswd)
+    {
+        return $this->setOption(C::_UPW, $pswd);
+    }
+
+    public function unsetUserPassword()
+    {
+        return $this->unsetOption(C::_UPW);
+    }
+
 }

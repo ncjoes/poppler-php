@@ -17,4 +17,9 @@ trait HelpFlags
     {
         return [C::_H, C::_HELP, C::_HELP_, C::_HELP_Q];
     }
+
+    public function printHelpInfo()
+    {
+        return $this->setFlag(C::_H);
+    }
 }

@@ -24,4 +24,19 @@ trait EncodingOptions
     {
         return [C::_LISTENC];
     }
+
+    public function setEncoding($string)
+    {
+        return $this->setOption(C::_ENC, $string);
+    }
+
+    public function defaultEncoding()
+    {
+        return $this->unsetOption(C::_ENC);
+    }
+
+    public function listEncodings()
+    {
+        return $this->setFlag(C::_LISTENC);
+    }
 }

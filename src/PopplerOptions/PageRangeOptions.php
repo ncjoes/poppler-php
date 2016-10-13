@@ -20,4 +20,14 @@ trait PageRangeOptions
             [C::_L => C::T_INTEGER]
         ];
     }
+
+    public function startFromPage($page)
+    {
+        return $this->setOption(C::_F);
+    }
+
+    public function stopAtPage($page)
+    {
+        return $this->setOption(C::_L);
+    }
 }

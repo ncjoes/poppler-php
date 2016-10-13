@@ -17,4 +17,21 @@ trait DateFlags
     {
         return [C::_ISODATES, C::_RAWDATE];
     }
+
+    public function isoDates()
+    {
+        return $this->setFlag(C::_ISODATES);
+    }
+
+    public function rawDates()
+    {
+        return $this->setFlag(C::_RAWDATE);
+    }
+
+    public function defaultDates()
+    {
+        $this->unsetFlag(C::_RAWDATE);
+
+        return $this->unsetFlag(C::_ISODATES);
+    }
 }
