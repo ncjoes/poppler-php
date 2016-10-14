@@ -42,9 +42,13 @@ class Config
         Config::set(C::OUTPUT_DIR, $dir);
     }
 
-    public static function getOutputDirectory()
+    public static function getOutputDirectory($new=false)
     {
-        return Config::get(C::OUTPUT_DIR, C::parseDir(realpath(__DIR__.'/../tests/results').'/test-'.date('m-d-Y_H-i')));
+        $dir = C::parseDir(realpath(__DIR__.'/../tests/results').'/test-'.date('m-d-Y_H-i'));
+        if($new){
+            return $dir;
+        }
+        return Config::get(C::OUTPUT_DIR, $dir);
     }
 
     public static function setOutputFilename($name)
