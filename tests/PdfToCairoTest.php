@@ -16,13 +16,11 @@ class PdfToCairoTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-
-        Config::set('poppler.bin_dir', realpath(C::parseDir(__DIR__.'/../vendor/bin/poppler')));
     }
 
     public function testGeneratorMethods()
     {
-        Config::setOutputDirectory(Config::getOutputDirectory());
+        Config::setOutputDirectory(Config::getOutputDirectory(true));
         $cairo = new PdfToCairo(__DIR__.'/sources/test1.pdf');
 
         //$cairo->oddPagesOnly();

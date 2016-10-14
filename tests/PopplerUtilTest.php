@@ -17,8 +17,6 @@ class PopplerUtilTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-
-        Config::set('poppler.bin_dir', realpath(dirname(__FILE__).'\..\vendor\bin\poppler'));
     }
 
     public function testSetOutputFileName()
@@ -52,15 +50,13 @@ class PopplerUtilTest extends PHPUnit_Framework_TestCase
 
     public function testOutputDirMethod()
     {
-        Config::setOutputDirectory(Config::getOutputDirectory());
+        Config::setOutputDirectory(Config::getOutputDirectory(true));
         $this->assertTrue(Config::isSet(C::OUTPUT_DIR));
 
         $source_file = __DIR__.'/sources/test1.pdf';
         $cairo = new PdfToCairo($source_file);
 
         $this->assertTrue($cairo->outputDir() != dirname($source_file));
-
-        var_dump($cairo->outputDir());
     }
 
     public function testMakeCommandMethod()

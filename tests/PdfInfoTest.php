@@ -8,13 +8,11 @@ class PdfInfoTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-
-        Config::set('poppler.bin_dir', realpath(dirname(__FILE__).'\..\vendor\bin\poppler'));
     }
 
     public function testGetInfo()
     {
-        $file = realpath(dirname(__FILE__).'\source\test1.pdf');
+        $file = realpath(dirname(__FILE__).'\sources\test1.pdf');
         $pdf_info = new PdfInfo($file);
 
         //print_r($pdf_info->getInfo());
@@ -24,7 +22,7 @@ class PdfInfoTest extends PHPUnit_Framework_TestCase
 
     public function testGetters()
     {
-        $file = dirname(__FILE__).'\source\test1.pdf';
+        $file = dirname(__FILE__).'\sources\test1.pdf';
         $pdf_info = new PdfInfo($file);
 
         $info = [
