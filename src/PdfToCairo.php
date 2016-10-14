@@ -20,8 +20,6 @@ class PdfToCairo extends PopplerUtil
     use PageRangeOptions;
     use HelpFlags;
 
-    private $products;
-
     public function __construct($pdfFile, array $options = [])
     {
         parent::__construct($pdfFile, $options);
@@ -59,64 +57,58 @@ class PdfToCairo extends PopplerUtil
         ];
     }
 
-    public function generatePNG($regenerate = false)
+    public function generatePNG()
     {
         $this->setOutputFormat(C::_PNG);
 
-        return $this->generate($regenerate);
+        return $this->generate();
     }
 
-    public function generateJPG($regenerate = false)
+    public function generateJPG()
     {
         $this->setOutputFormat(C::_JPEG);
 
-        return $this->generate($regenerate);
+        return $this->generate();
     }
 
-    public function generateTIFF($regenerate = false)
+    public function generateTIFF()
     {
         $this->setOutputFormat(C::_TIFF);
 
-        return $this->generate($regenerate);
+        return $this->generate();
     }
 
-    public function generatePS($regenerate = false)
+    public function generatePS()
     {
         $this->setOutputFormat(C::_PS);
 
-        return $this->generate($regenerate);
+        return $this->generate();
     }
 
-    public function generateEPS($regenerate = false)
+    public function generateEPS()
     {
         $this->setOutputFormat(C::_EPS);
 
-        return $this->generate($regenerate);
+        return $this->generate();
     }
 
-    public function generatePDF($regenerate = false)
+    public function generatePDF()
     {
         $this->setOutputFormat(C::_PDF);
 
-        return $this->generate($regenerate);
+        return $this->generate();
     }
 
-    public function generateSVG($regenerate = false)
+    public function generateSVG()
     {
         $this->setOutputFormat(C::_SVG);
         $this->output_file_extension = '.svg';
 
-        return $this->generate($regenerate);
+        return $this->generate();
     }
 
-    public function generate($regenerate = false)
+    public function generate()
     {
-        if (is_null($this->products) or $regenerate == true) {
-            $content = $this->shellExec();
-
-            $this->products = $content;
-        }
-
-        return $this->products;
+        return $this->shellExec();
     }
 }
