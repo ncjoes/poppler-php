@@ -1,7 +1,7 @@
 {
   "name": "ncjoes/php-poppler",
-  "description": "PHP wrapper for Poppler utils",
-  "keywords": ["PDF Convert", "PHP-PDF", "PDF to HTML", "PDF to SVG", "PDF to JPG", "PDF to PNG", "Poppler-utils"],
+  "description": "Complete, Comprehensive and Flexible PHP wrapper for Poppler-utils",
+  "keywords": ["Poppler-utils", "PHP-Poppler", "PDF", "PDF to HTML", "PDF to SVG", "PDF to JPG", "PDF to PNG", "PDF Convert", "PHP-PDF"],
   "license": "MIT",
   "authors": [
     {

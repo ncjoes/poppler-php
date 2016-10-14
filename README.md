@@ -1,24 +1,25 @@
-# PHP-Poppler: PHP wrapper for Poppler-utils
+# PhpPoppler: Comprehensive PHP wrapper for Poppler-utils
 
-This package is brought to you so you can use php and poppler-utils to convert your pdf files to any of these formats
+PhpPoppler is a complete and very flexible PHP wrapper for [Poppler-utils](http://poppler.freedesktop.org/).
+This package is brought to you so you can use php and poppler-utils to extract contents from, and convert your pdf files to any of these formats:
 
-*   HTML5
+*   HTML
 *   JPG, PNG, TIFF
 *   PostScript (PS)
 *   Encapsulated PostScript (EPS)
 *   Scalable Vector Graphic (SVG)
 *   Plain Text
 
-You can also use this package to split, combine, detach embedded items and combine pdf files from within your php script.
+You can also use this package to split pdf files, combine pdf files, and detach embedded items from pdf files using within your php scripts.
 With the `NcJoes\PhpPoppler\PdfInfo` class, you can query meta-data of any pdf file.
 
 ## Important Notes
 
-...
+### Installation
 
-## Installation
+It is recommended to install PHP-Poppler through [Composer](http://getcomposer.org/).
 
-When you are in your active directory apps, you can just run this command to add this package on your app
+Run this command within your project directory
 
 ```shell
 composer require ncjoes/php-poppler:~1
@@ -32,14 +33,40 @@ Or add this line to your `composer.json`
 }
 ```
 
-## Requirements
-1. Poppler-Utils (if you are using Ubuntu Distro, just install it from apt )
-	`sudo apt-get install poppler-utils`
-2. PHP Configuration with shell access enabled
+### Dependencies
+In order to use PHP-Poppler, you need to install Poppler. Depending of your configuration, please follow the instructions at 
+[http://poppler.freedesktop.org/](http://poppler.freedesktop.org/). You will also need to configure your PHP environment to enable shell access.
 
-## Usage
+Briefly,
 
-Here is the sample.
+#### If you are using Ubuntu Distro, just install it from apt: 
+
+```bash
+sudo apt-get install poppler-utils`
+```
+
+#### For Windows Users
+First download poppler-utils for windows here <http://blog.alivate.com.au/poppler-windows/>. 
+
+Extract the downloaded archive and copy the contents of the `bin` directory to `your-project-path/vendor/bin/poppler/`.
+
+#### For OS/X Users
+
+**1. Install brew**
+
+Brew is a famous package manager on OS/X : http://brew.sh/ (aptitude style).
+
+**2. Install poppler**
+
+```bash
+brew install poppler
+```
+
+### Usage
+
+Use ```NcJoes\PhpPopler\Config::setBinDirectory($dir)``` to set the location of the poppler-utils binaries in your php code.
+
+Here are some samples.
 
 ```php
 <?php
@@ -84,29 +111,6 @@ $pdfToHtml->generate();
 ?>
 ```
 
-## Usage note for Windows Users
-For those who need this package in windows, there is a way. First download poppler-utils for windows here <http://blog.alivate.com.au/poppler-windows/>. 
-And download the latest binary.
-
-Extract the downloaded archive and copy the contents of the `bin` directory to `your-project-path/vendor/bin/poppler/`.
-
-## Usage note for OS/X Users
-
-**1. Install brew**
-
-Brew is a famous package manager on OS/X : http://brew.sh/ (aptitude style).
-
-**2. Install poppler**
-
-```bash
-brew install poppler
-```
-
-**3. Verify the path of the bin directory**
-
-**4. Whatever the paths are, use ```NcJoes\Php\Config::setBinDirectory``` to set them in your php code**.
-Obviously, use the same path as the one given by the ```which``` command;
-
-## Feedback & Contribute
+### Feedback & Contribute
 
 Send me an issue for improvement or any buggy thing. Thanks :+1:
