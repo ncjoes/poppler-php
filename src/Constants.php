@@ -90,5 +90,17 @@ class Constants
     const T_INTEGER = 'integer';
     const T_DOUBLE  = 'double';
 
-    const DS = '\\';
+    //Directory Helpers
+    const DS          = '\\';
+    const BIN_DIR     = 'ncjoes.php-pdf-suite.bin_dir';
+    const OUTPUT_DIR  = 'ncjoes.php-pdf-suite.output_dir';
+    const OUTPUT_NAME = 'ncjoes.php-pdf-suite.output_name';
+
+    public static function parseDir($dir)
+    {
+        return str_replace('/', self::DS, $dir);
+    }
+
+    //Config Helpers
+    const DEFAULT     = '_d_';
 }
