@@ -1,16 +1,16 @@
 <?php
 /**
- * Php-PDF-Suite
+ * Php-PopplerUtils
  *
  * Author:  Chukwuemeka Nwobodo (jcnwobodo@gmail.com)
  * Date:    10/13/2016
  * Time:    2:31 PM
  **/
 
-use NcJoes\PhpPdfSuite\Config;
-use NcJoes\PhpPdfSuite\Constants as C;
-use NcJoes\PhpPdfSuite\PdfInfo;
-use NcJoes\PhpPdfSuite\PdfToCairo;
+use NcJoes\PhpPoppler\Config;
+use NcJoes\PhpPoppler\Constants as C;
+use NcJoes\PhpPoppler\PdfInfo;
+use NcJoes\PhpPoppler\PdfToCairo;
 
 class PopplerUtilTest extends PHPUnit_Framework_TestCase
 {

@@ -1,18 +1,18 @@
 <?php
 /**
- * Php-PDF-Suite
+ * Php-PopplerUtils
  *
  * Author:  Chukwuemeka Nwobodo (jcnwobodo@gmail.com)
  * Date:    10/12/2016
  * Time:    11:59 AM
  **/
 
-namespace NcJoes\PhpPdfSuite;
+namespace NcJoes\PhpPoppler;
 
-use NcJoes\PhpPdfSuite\Constants as C;
-use NcJoes\PhpPdfSuite\Exceptions\FileNotFoundException;
-use NcJoes\PhpPdfSuite\Exceptions\InvalidArgumentException;
-use NcJoes\PhpPdfSuite\Exceptions\InvalidDirectoryException;
+use NcJoes\PhpPoppler\Constants as C;
+use NcJoes\PhpPoppler\Exceptions\FileNotFoundException;
+use NcJoes\PhpPoppler\Exceptions\InvalidArgumentException;
+use NcJoes\PhpPoppler\Exceptions\InvalidDirectoryException;
 
 abstract class PopplerUtil
 {

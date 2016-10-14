@@ -1,6 +1,6 @@
 {
-  "name": "ncjoes/php-pdf-suite",
-  "description": "PDF utilities suite for PHP using Poppler-utils",
+  "name": "ncjoes/php-poppler",
+  "description": "PHP wrapper for Poppler utils",
   "keywords": ["PDF Convert", "PHP-PDF", "PDF to HTML", "PDF to SVG", "PDF to JPG", "PDF to PNG", "Poppler-utils"],
   "license": "MIT",
   "authors": [
@@ -25,7 +25,7 @@
       "NcJoes": "src"
     },
     "psr-4": {
-      "NcJoes\\PhpPdfSuite\\": "src/"
+      "NcJoes\\PhpPoppler\\": "src/"
     }
   }
 }

@@ -1,20 +1,20 @@
 <?php
 /**
- * Php-PDF-Suite
+ * Php-PopplerUtils
  *
  * Author:  Chukwuemeka Nwobodo (jcnwobodo@gmail.com)
  * Date:    10/13/2016
  * Time:    12:59 AM
  **/
 
-namespace NcJoes\PhpPdfSuite;
+namespace NcJoes\PhpPoppler;
 
-use NcJoes\PhpPdfSuite\Constants as C;
-use NcJoes\PhpPdfSuite\PopplerOptions\ConsoleFlags;
-use NcJoes\PhpPdfSuite\PopplerOptions\CredentialOptions;
-use NcJoes\PhpPdfSuite\PopplerOptions\EncodingOptions;
-use NcJoes\PhpPdfSuite\PopplerOptions\HtmlOptions;
-use NcJoes\PhpPdfSuite\PopplerOptions\PageRangeOptions;
+use NcJoes\PhpPoppler\Constants as C;
+use NcJoes\PhpPoppler\PopplerOptions\ConsoleFlags;
+use NcJoes\PhpPoppler\PopplerOptions\CredentialOptions;
+use NcJoes\PhpPoppler\PopplerOptions\EncodingOptions;
+use NcJoes\PhpPoppler\PopplerOptions\HtmlOptions;
+use NcJoes\PhpPoppler\PopplerOptions\PageRangeOptions;
 
 class PdfToHtml extends PopplerUtil
 {

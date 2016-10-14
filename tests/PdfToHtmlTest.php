@@ -1,15 +1,15 @@
 <?php
 /**
- * Php-PDF-Suite
+ * Php-PopplerUtils
  *
  * Author:  Chukwuemeka Nwobodo (jcnwobodo@gmail.com)
  * Date:    10/14/2016
  * Time:    4:46 AM
  **/
 
-use NcJoes\PhpPdfSuite\Config;
-use NcJoes\PhpPdfSuite\Constants as C;
-use NcJoes\PhpPdfSuite\PdfToHtml;
+use NcJoes\PhpPoppler\Config;
+use NcJoes\PhpPoppler\Constants as C;
+use NcJoes\PhpPoppler\PdfToHtml;
 
 class PdfToHtmlTest extends PHPUnit_Framework_TestCase
 {

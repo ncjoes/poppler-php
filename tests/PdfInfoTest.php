@@ -1,7 +1,14 @@
 <?php
+/**
+ * Php-PopplerUtils
+ *
+ * Author:  Chukwuemeka Nwobodo (jcnwobodo@gmail.com)
+ * Date:    10/13/2016
+ * Time:    11:35 AM
+ **/
 
-use NcJoes\PhpPdfSuite\Config;
-use NcJoes\PhpPdfSuite\PdfInfo;
+use NcJoes\PhpPoppler\Config;
+use NcJoes\PhpPoppler\PdfInfo;
 
 class PdfInfoTest extends PHPUnit_Framework_TestCase
 {

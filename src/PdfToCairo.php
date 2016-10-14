@@ -1,18 +1,18 @@
 <?php
 /**
- * Php-PDF-Suite
+ * Php-PopplerUtils
  *
  * Author:  Chukwuemeka Nwobodo (jcnwobodo@gmail.com)
  * Date:    10/13/2016
  * Time:    2:17 AM
  **/
 
-namespace NcJoes\PhpPdfSuite;
+namespace NcJoes\PhpPoppler;
 
-use NcJoes\PhpPdfSuite\Constants as C;
-use NcJoes\PhpPdfSuite\PopplerOptions\CairoOptions;
-use NcJoes\PhpPdfSuite\PopplerOptions\HelpFlags;
-use NcJoes\PhpPdfSuite\PopplerOptions\PageRangeOptions;
+use NcJoes\PhpPoppler\Constants as C;
+use NcJoes\PhpPoppler\PopplerOptions\CairoOptions;
+use NcJoes\PhpPoppler\PopplerOptions\HelpFlags;
+use NcJoes\PhpPoppler\PopplerOptions\PageRangeOptions;
 
 class PdfToCairo extends PopplerUtil
 {

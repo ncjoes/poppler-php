@@ -1,13 +1,13 @@
 <?php
 /**
- * Php-PDF-Suite
+ * Php-PopplerUtils
  *
  * Author:  Chukwuemeka Nwobodo (jcnwobodo@gmail.com)
  * Date:    10/12/2016
  * Time:    6:12 PM
  **/
 
-namespace NcJoes\PhpPdfSuite;
+namespace NcJoes\PhpPoppler;
 
 class Constants
 {

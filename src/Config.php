@@ -1,9 +1,9 @@
 <?php
 
-namespace NcJoes\PhpPdfSuite;
+namespace NcJoes\PhpPoppler;
 
 use Illuminate\Config\Repository;
-use NcJoes\PhpPdfSuite\Constants as C;
+use NcJoes\PhpPoppler\Constants as C;
 
 class Config
 {

@@ -15,4 +15,10 @@
         <ini name="display_errors" value="on"/>
     </php>
 
+    <testsuites>
+        <testsuite name="Package Test Suite">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+    </testsuites>
+
 </phpunit>

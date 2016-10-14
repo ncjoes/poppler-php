@@ -1,15 +1,15 @@
 <?php
 /**
- * Php-PDF-Suite
+ * Php-PopplerUtils
  *
  * Author:  Chukwuemeka Nwobodo (jcnwobodo@gmail.com)
  * Date:    10/12/2016
  * Time:    5:24 PM
  **/
 
-namespace NcJoes\PhpPdfSuite\PopplerOptions;
+namespace NcJoes\PhpPoppler\PopplerOptions;
 
-use NcJoes\PhpPdfSuite\Constants as C;
+use NcJoes\PhpPoppler\Constants as C;
 
 trait HelpFlags
 {
