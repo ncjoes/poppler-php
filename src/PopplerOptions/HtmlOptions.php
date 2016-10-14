@@ -71,7 +71,7 @@ trait HtmlOptions
         return $this->setFlag(C::_C);
     }
 
-    public function generateSimpleDocument()
+    public function generateSingleDocument()
     {
         return $this->setFlag(C::_S);
     }
@@ -83,7 +83,7 @@ trait HtmlOptions
 
     public function noFrames()
     {
-        return $this->noFrames();
+        return $this->setFlag(C::_NOFRAMES);
     }
 
     public function xmlOutput()
