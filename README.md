@@ -1,4 +1,4 @@
-# Php-PDF-Suite: PHP wrapper for Poppler-utils
+# PHP-Poppler: PHP wrapper for Poppler-utils
 
 This package is brought to you so you can use php and poppler-utils to convert your pdf files to any of these formats
 
