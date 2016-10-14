@@ -11,6 +11,8 @@ namespace NcJoes\PhpPdfSuite;
 
 use NcJoes\PhpPdfSuite\Constants as C;
 use NcJoes\PhpPdfSuite\Exceptions\FileNotFoundException;
+use NcJoes\PhpPdfSuite\Exceptions\InvalidArgumentException;
+use NcJoes\PhpPdfSuite\Exceptions\InvalidDirectoryException;
 
 abstract class PopplerUtil
 {
@@ -23,7 +25,6 @@ abstract class PopplerUtil
     private   $output_file_name;
     protected $output_file_extension;
     protected $require_output_dir = true;
-    protected $require_file_name  = false;
 
     public function __construct($pdfFile = '', array $options = [])
     {
@@ -43,11 +44,14 @@ abstract class PopplerUtil
 
     public function open($pdfFile)
     {
-        $real_path = realpath($pdfFile);
+        $real_path = realpath(C::parseDir($pdfFile));
         if (is_file($real_path)) {
             $this->source_pdf = $real_path;
 
-            return $this->outputDir(dirname($pdfFile));
+            if (Config::isSet(C::OUTPUT_DIR))
+                return $this;
+            else
+                return $this->outputDir(dirname($pdfFile));
         }
         throw new FileNotFoundException($pdfFile);
     }
@@ -56,10 +60,12 @@ abstract class PopplerUtil
     {
         $util_options = $this->utilOptions();
 
-        if (array_key_exists($key, $util_options) and $util_options[ $key ] == gettype($value))
+        if (array_key_exists($key, $util_options) and $util_options[ $key ] == gettype($value)) {
             $this->options[ $key ] = $value;
 
-        return $this;
+            return $this;
+        }
+        throw new InvalidArgumentException("Unknown '".get_class($this)."' Option (or Invalid Type): ".$key.'('.gettype($value).')');
     }
 
     public function unsetOption($key)
@@ -74,10 +80,12 @@ abstract class PopplerUtil
     {
         $util_flags = $this->utilFlags();
 
-        if (array_key_exists($key, $util_flags))
+        if (in_array($key, $util_flags)) {
             $this->flags[ $key ] = $key;
 
-        return $this;
+            return $this;
+        }
+        throw new InvalidArgumentException("Unknown '".get_class($this)."' Flag: ".$key);
     }
 
     public function unsetFlag($key)
@@ -108,63 +116,75 @@ abstract class PopplerUtil
         return array_key_exists($key, $this->flags);
     }
 
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    public function getFlags()
+    {
+        return $this->flags;
+    }
+
     public function binDir($dir = '')
     {
         $real_path = realpath($dir);
         if (!empty($dir) and is_dir($real_path)) {
             $this->binary_dir = $real_path;
-            Config::set('poppler.bin_dir', $real_path);
+            Config::setBinDirectory($real_path);
 
             return $this;
         }
 
-        return Config::get('poppler.bin_dir', realpath(dirname(__FILE__).'\..\vendor\bin\poppler'));
+        return Config::getBinDirectory();
     }
 
     public function outputDir($dir = '')
     {
-        $real_path = realpath($dir);
-        if (!empty($dir) and is_dir($real_path)) {
-            $this->output_dir = $real_path;
-            Config::set('poppler.output_dir', $real_path);
+        if (!empty($dir)) {
+            $real_path = realpath($dir);
 
-            return $this;
+            if (is_dir($real_path)) {
+                $this->output_dir = $real_path;
+                Config::setOutputDirectory($real_path);
+
+                return $this;
+            }
+            elseif ($dir == C::DEFAULT) {
+                Config::setOutputDirectory(Config::getOutputDirectory());
+            }
+            throw new InvalidDirectoryException($dir);
         }
 
-        return Config::get('poppler.output_dir', realpath(dirname(__FILE__).'\..\tests\results'.uniqid('output-')));
+        return Config::getOutputDirectory();
     }
 
     public function outputFilename($name = '')
     {
         if (!empty($name) and is_string($name)) {
             $this->output_file_name = basename($name);
-            $this->require_file_name = true;
 
-            Config::set('poppler.output_name', $this->output_file_name);
+            Config::setOutputFilename($this->output_file_name);
 
             return $this;
         }
-
-        elseif(empty($this->output_file_name) and $this->require_file_name) {
+        else {
             $base = basename($this->source_pdf);
-            $arr = explode('.', $base);
-            $extension = $arr[sizeof($arr)-1];
-            $default_name = str_replace($extension, '', $base) ?: '';
+            $default_name = str_replace('.pdf', '', $base) ?: '';
 
-            return Config::get('poppler.output_name', $default_name);
-        }
-        else{
-            return $this->output_file_name;
+            return Config::getOutputFilename($default_name);
         }
     }
 
-    public function outputFileExtension()
-    {
-
-    }
     protected function shellExec()
     {
         $command = $this->makeShellCommand();
+
+        if ($this->require_output_dir) {
+            $outputDir = $this->outputDir();
+            if (!file_exists($outputDir))
+                mkdir($outputDir, 0777, true);
+        }
 
         return shell_exec($command);
     }
@@ -172,31 +192,26 @@ abstract class PopplerUtil
     private function makeShellCommand()
     {
         $q = PHP_OS === 'WINNT' ? "\"" : "'";
-        $options = $this->makePopplerOptions();
+        $options = $this->makeShellOptions();
 
-        $command[] = $q.$this->binDir().C::DS.$this->bin_file.$q;
+        $command[] = C::parseDir($q.$this->binDir().'/'.$this->bin_file.$q);
 
-        if ($options != ''){
+        if ($options != '') {
             $command[] = $options;
         }
 
         $command[] = $q.$this->source_pdf.$q;
 
         if ($this->require_output_dir) {
-            $output_path = $this->outputDir();
+            $output_path = C::parseDir($this->outputDir().'/'.$this->outputFilename());
 
-            if ($this->require_file_name) {
-                $output_path .= C::DS.$this->outputFilename();
-            }
-
-            $command[] = $q.$output_path.$q;
+            $command[] = $q.$output_path.$this->output_file_extension.$q;
         }
-
 
         return implode(' ', $command);
     }
 
-    private function makePopplerOptions()
+    private function makeShellOptions()
     {
         $generated = [];
         array_walk($this->options, function ($value, $key) use (&$generated) {
@@ -215,14 +230,14 @@ abstract class PopplerUtil
         return $this->makeShellCommand();
     }
 
-    public function previewPopplerOptions()
+    public function previewShellOptions()
     {
-        return $this->makePopplerOptions();
+        return $this->makeShellOptions();
     }
 
     public function clearOutputDirectory()
     {
-        $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->output_dir, \FilesystemIterator::SKIP_DOTS));
+        $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->outputDir(), \FilesystemIterator::SKIP_DOTS));
         foreach ($files as $file) {
             $path = (string)$file;
             $basename = basename($path);

@@ -8,6 +8,7 @@
  **/
 
 use NcJoes\PhpPdfSuite\Config;
+use NcJoes\PhpPdfSuite\Constants as C;
 use NcJoes\PhpPdfSuite\PdfInfo;
 use NcJoes\PhpPdfSuite\PdfToCairo;
 
@@ -20,14 +21,6 @@ class PopplerUtilTest extends PHPUnit_Framework_TestCase
         Config::set('poppler.bin_dir', realpath(dirname(__FILE__).'\..\vendor\bin\poppler'));
     }
 
-    public function testSetOutputDirectory()
-    {
-        $file = realpath(dirname(__FILE__).'\source\test1.pdf');
-        $pdf = new PdfToCairo($file);
-
-        $this->assertStringEndsWith('source', $pdf->outputDir(dirname(__FILE__).'\source')->outputDir());
-    }
-
     public function testSetOutputFileName()
     {
         $file = realpath(dirname(__FILE__).'\source\test1.pdf');
@@ -37,7 +30,40 @@ class PopplerUtilTest extends PHPUnit_Framework_TestCase
         $this->assertStringEndsWith('test.png', $pdf->outputFilename());
     }
 
-    public function testMakeCommand()
+    public function testMakeOptionsMethod()
+    {
+        $file = realpath(dirname(__FILE__).'\source\test1.pdf');
+        $pdf = new PdfInfo($file);
+
+        $pdf->startFromPage(10);
+        $this->assertArrayHasKey('-f', $pdf->getOptions());
+
+        $pdf->stopAtPage(20);
+        $this->assertArrayHasKey('-l', $pdf->getOptions());
+
+        $pdf->listEncodings();
+        $this->assertArrayHasKey('-listenc', $pdf->getFlags());
+
+        $pdf->isoDates();
+        $this->assertArrayHasKey('-isodates', $pdf->getFlags());
+
+        $this->assertContains('-f', $pdf->previewShellOptions());
+    }
+
+    public function testOutputDirMethod()
+    {
+        Config::setOutputDirectory(Config::getOutputDirectory());
+        $this->assertTrue(Config::isSet(C::OUTPUT_DIR));
+
+        $source_file = __DIR__.'/sources/test1.pdf';
+        $cairo = new PdfToCairo($source_file);
+
+        $this->assertTrue($cairo->outputDir() != dirname($source_file));
+
+        var_dump($cairo->outputDir());
+    }
+
+    public function testMakeCommandMethod()
     {
         $file = realpath(dirname(__FILE__).'\source\test1.pdf');
         $pdf = new PdfToCairo($file);
