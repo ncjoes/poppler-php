@@ -26,11 +26,12 @@ class PdfToHtml extends PopplerUtil
 
     private $products;
 
-    public function __construct($pdfFile, array $options = [])
+    public function __construct($pdfFile = '', array $options = [])
     {
-        parent::__construct($pdfFile, $options);
         $this->bin_file = C::PDF_TO_HTML;
         $this->setFlag(C::_Q);
+
+        return parent::__construct($pdfFile, $options);
     }
 
     public function utilOptions()

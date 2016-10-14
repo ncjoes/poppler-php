@@ -20,10 +20,11 @@ class PdfToCairo extends PopplerUtil
     use PageRangeOptions;
     use HelpFlags;
 
-    public function __construct($pdfFile, array $options = [])
+    public function __construct($pdfFile = '', array $options = [])
     {
-        parent::__construct($pdfFile, $options);
         $this->bin_file = C::PDF_TO_CAIRO;
+
+        return parent::__construct($pdfFile, $options);
     }
 
     public function utilOptions()

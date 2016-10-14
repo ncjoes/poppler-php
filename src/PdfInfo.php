@@ -26,11 +26,12 @@ class PdfInfo extends PopplerUtil
 
     private $pdf_info;
 
-    public function __construct($pdfFile, array $options = [])
+    public function __construct($pdfFile = '', array $options = [])
     {
-        parent::__construct($pdfFile, $options);
         $this->require_output_dir = false;
         $this->bin_file = C::PDF_INFO;
+
+        return parent::__construct($pdfFile, $options);
     }
 
     public function getInfo()
