@@ -4,6 +4,7 @@ namespace NcJoes\PhpPoppler;
 
 use Illuminate\Config\Repository;
 use NcJoes\PhpPoppler\Constants as C;
+use NcJoes\PhpPoppler\Exceptions\InvalidDirectoryException;
 
 class Config
 {
@@ -29,7 +30,18 @@ class Config
 
     public static function setBinDirectory($dir)
     {
-        Config::set(C::BIN_DIR, $dir);
+        $real_path = realpath($dir);
+
+        if ($real_path) {
+            $real_path = C::parseDir($real_path);
+            Config::set(C::BIN_DIR, $real_path);
+
+            return $real_path;
+        }
+        elseif ($dir == C::DEFAULT) {
+            return Config::setBinDirectory(Config::getBinDirectory());
+        }
+        throw new InvalidDirectoryException($dir);
     }
 
     public static function getBinDirectory()
@@ -37,17 +49,29 @@ class Config
         return Config::get(C::BIN_DIR, C::parseDir(realpath(__DIR__.'/../vendor/bin/poppler')));
     }
 
-    public static function setOutputDirectory($dir)
+    public static function setOutputDirectory($dir, $new = false)
     {
-        Config::set(C::OUTPUT_DIR, $dir);
+        $real_path = $new ? $dir : realpath($dir);
+
+        if ($real_path) {
+            $real_path = C::parseDir($real_path);
+            Config::set(C::OUTPUT_DIR, $real_path);
+
+            return $real_path;
+        }
+        elseif ($dir == C::DEFAULT) {
+            return Config::setOutputDirectory(Config::getOutputDirectory($new));
+        }
+        throw new InvalidDirectoryException($dir);
     }
 
-    public static function getOutputDirectory($new=false)
+    public static function getOutputDirectory($new = false)
     {
         $dir = C::parseDir(realpath(__DIR__.'/../tests/results').'/test-'.date('m-d-Y_H-i'));
-        if($new){
+        if ($new) {
             return $dir;
         }
+
         return Config::get(C::OUTPUT_DIR, $dir);
     }
 

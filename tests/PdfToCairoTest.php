@@ -20,7 +20,7 @@ class PdfToCairoTest extends PHPUnit_Framework_TestCase
 
     public function testGeneratorMethods()
     {
-        Config::setOutputDirectory(Config::getOutputDirectory(true));
+        Config::setOutputDirectory(Config::getOutputDirectory(true), true);
         $cairo = new PdfToCairo(__DIR__.'/sources/test1.pdf');
 
         //$cairo->oddPagesOnly();

@@ -20,7 +20,7 @@ class PdfToHtmlTest extends PHPUnit_Framework_TestCase
 
     public function testGenerateMethod()
     {
-        Config::setOutputDirectory(Config::getOutputDirectory(true));
+        Config::setOutputDirectory(Config::getOutputDirectory(true), true);
         $pdfToHtml = new PdfToHtml(__DIR__.'/sources/test1.pdf');
 
         //$cairo->oddPagesOnly();

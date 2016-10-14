@@ -12,7 +12,6 @@ namespace NcJoes\PhpPoppler;
 use NcJoes\PhpPoppler\Constants as C;
 use NcJoes\PhpPoppler\Exceptions\FileNotFoundException;
 use NcJoes\PhpPoppler\Exceptions\InvalidArgumentException;
-use NcJoes\PhpPoppler\Exceptions\InvalidDirectoryException;
 
 abstract class PopplerUtil
 {
@@ -128,12 +127,13 @@ abstract class PopplerUtil
 
     public function binDir($dir = '')
     {
-        $real_path = realpath($dir);
-        if (!empty($dir) and is_dir($real_path)) {
-            $this->binary_dir = $real_path;
-            Config::setBinDirectory($real_path);
+        if (!empty($dir)) {
+            $this->binary_dir = Config::setBinDirectory($dir);
 
             return $this;
+        }
+        elseif ($dir == C::DEFAULT) {
+            $this->binary_dir = Config::setBinDirectory(Config::getBinDirectory());
         }
 
         return Config::getBinDirectory();
@@ -142,18 +142,12 @@ abstract class PopplerUtil
     public function outputDir($dir = '')
     {
         if (!empty($dir)) {
-            $real_path = realpath($dir);
+            $this->output_dir = Config::setOutputDirectory($dir);
 
-            if (is_dir($real_path)) {
-                $this->output_dir = $real_path;
-                Config::setOutputDirectory($real_path);
-
-                return $this;
-            }
-            elseif ($dir == C::DEFAULT) {
-                Config::setOutputDirectory(Config::getOutputDirectory());
-            }
-            throw new InvalidDirectoryException($dir);
+            return $this;
+        }
+        elseif ($dir == C::DEFAULT) {
+            $this->output_dir = Config::setOutputDirectory(Config::getOutputDirectory());
         }
 
         return Config::getOutputDirectory();
