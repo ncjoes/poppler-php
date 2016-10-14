@@ -12,6 +12,7 @@ namespace NcJoes\PhpPoppler;
 use NcJoes\PhpPoppler\Constants as C;
 use NcJoes\PhpPoppler\Exceptions\FileNotFoundException;
 use NcJoes\PhpPoppler\Exceptions\InvalidArgumentException;
+use NcJoes\PhpPoppler\Helpers as H;
 
 abstract class PopplerUtil
 {
@@ -43,7 +44,7 @@ abstract class PopplerUtil
 
     public function open($pdfFile)
     {
-        $real_path = realpath(C::parseDir($pdfFile));
+        $real_path = realpath(H::parseDir($pdfFile));
         if (is_file($real_path)) {
             $this->source_pdf = $real_path;
 
@@ -188,7 +189,7 @@ abstract class PopplerUtil
         $q = PHP_OS === 'WINNT' ? "\"" : "'";
         $options = $this->makeShellOptions();
 
-        $command[] = C::parseDir($q.$this->binDir().'/'.$this->bin_file.$q);
+        $command[] = H::parseDir($q.$this->binDir().'/'.$this->bin_file.$q);
 
         if ($options != '') {
             $command[] = $options;
@@ -197,7 +198,7 @@ abstract class PopplerUtil
         $command[] = $q.$this->source_pdf.$q;
 
         if ($this->require_output_dir) {
-            $output_path = C::parseDir($this->outputDir().'/'.$this->outputFilename());
+            $output_path = H::parseDir($this->outputDir().'/'.$this->outputFilename());
 
             $command[] = $q.$output_path.$this->output_file_extension.$q;
         }

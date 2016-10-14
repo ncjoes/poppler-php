@@ -7,7 +7,6 @@
  * Time:    11:35 AM
  **/
 
-use NcJoes\PhpPoppler\Config;
 use NcJoes\PhpPoppler\PdfInfo;
 
 class PdfInfoTest extends PHPUnit_Framework_TestCase
@@ -47,7 +46,7 @@ class PdfInfoTest extends PHPUnit_Framework_TestCase
             'Is Optimized'      => (int)$pdf_info->isOptimized(),
             'Page Width'        => $pdf_info->getPageWidth(),
             'Page Height'       => $pdf_info->getPageHeight(),
-            'Unit'              => $pdf_info->getSizeUnit()
+            'Unit'              => $pdf_info->getSizeUnit(),
         ];
 
         //print_r($info);

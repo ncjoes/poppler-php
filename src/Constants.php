@@ -9,7 +9,7 @@
 
 namespace NcJoes\PhpPoppler;
 
-class Constants
+abstract class Constants
 {
     //Poppler Utils Binaries
     const PDF_DETACH   = 'pdfdetach';
@@ -95,11 +95,6 @@ class Constants
     const BIN_DIR     = 'ncjoes.php-pdf-suite.bin_dir';
     const OUTPUT_DIR  = 'ncjoes.php-pdf-suite.output_dir';
     const OUTPUT_NAME = 'ncjoes.php-pdf-suite.output_name';
-
-    public static function parseDir($dir)
-    {
-        return str_replace('/', self::DS, $dir);
-    }
 
     //Config Helpers
     const DEFAULT     = '_d_';
