@@ -1,6 +1,6 @@
-# PhpPoppler: Comprehensive PHP wrapper for Poppler-utils
+# PopplerPhp: Comprehensive PHP wrapper for Poppler-utils
 
-PhpPoppler is a complete and very flexible PHP wrapper for [Poppler-utils](http://poppler.freedesktop.org/).
+PopplerPhp is a complete and very flexible PHP wrapper for [Poppler-utils](http://poppler.freedesktop.org/).
 This package is brought to you so you can use php and poppler-utils to extract contents from, and convert your pdf files to any of these formats:
 
 *   HTML
@@ -11,30 +11,30 @@ This package is brought to you so you can use php and poppler-utils to extract c
 *   Plain Text
 
 You can also use this package to split pdf files, combine pdf files, and detach embedded items from pdf files using within your php scripts.
-With the `NcJoes\PhpPoppler\PdfInfo` class, you can query meta-data of any pdf file.
+With the `NcJoes\PopplerPhp\PdfInfo` class, you can query meta-data of any pdf file.
 
 ## Important Notes
 
 ### Installation
 
-It is recommended to install PHP-Poppler through [Composer](http://getcomposer.org/).
+It is recommended to install Poppler-PHP through [Composer](http://getcomposer.org/).
 
 Run this command within your project directory
 
 ```shell
-composer require ncjoes/php-poppler:~1
+composer require ncjoes/poppler-php:~1
 ```
 
 Or add this line to your `composer.json`
 
 ```json
 {
-	"ncjoes/php-poppler": "~1"
+	"ncjoes/poppler-php": "~1"
 }
 ```
 
 ### Dependencies
-In order to use PHP-Poppler, you need to install Poppler. Depending of your configuration, please follow the instructions at 
+In order to use Poppler-PHP, you need to install Poppler. Depending of your configuration, please follow the instructions at 
 [http://poppler.freedesktop.org/](http://poppler.freedesktop.org/). You will also need to configure your PHP environment to enable shell access.
 
 Briefly,
@@ -71,10 +71,10 @@ Here are some samples.
 ```php
 <?php
 // if you are using composer, just use this
-use NcJoes\PhpPoppler\PdfInfo;
-use NcJoes\PhpPoppler\Config;
-use NcJoes\PhpPoppler\PdfToCairo;
-use NcJoes\PhpPoppler\PdfToHtml;
+use NcJoes\PopplerPhp\PdfInfo;
+use NcJoes\PopplerPhp\Config;
+use NcJoes\PopplerPhp\PdfToCairo;
+use NcJoes\PopplerPhp\PdfToHtml;
 
 $pdf = new PdfInfo('path-to-file\file.pdf');
 
