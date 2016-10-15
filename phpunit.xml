@@ -17,7 +17,7 @@
 
     <testsuites>
         <testsuite name="Package Test Suite">
-            <directory suffix="Test.php">./tests/PopplerPhp</directory>
+            <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
 
