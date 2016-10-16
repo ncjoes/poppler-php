@@ -31,4 +31,8 @@ class PdfImages extends PopplerUtil
         // TODO: Implement utilFlagRules() method.
     }
 
+    public function outputExtension()
+    {
+        return null;
+    }
 }

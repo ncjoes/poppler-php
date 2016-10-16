@@ -223,4 +223,9 @@ class PdfInfo extends PopplerUtil
             'alt' => [],
         ];
     }
+
+    public function outputExtension()
+    {
+        return null;
+    }
 }

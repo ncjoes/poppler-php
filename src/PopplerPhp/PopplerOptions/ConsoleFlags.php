@@ -16,16 +16,6 @@ trait ConsoleFlags
     use HelpFlags;
     use VersionFlags;
 
-    public function suppressConsoleOutput()
-    {
-        return $this->setFlag(C::_Q);
-    }
-
-    public function outputToConsole()
-    {
-        return $this->setFlag(C::_STDOUT);
-    }
-
     protected function allConsoleFlags()
     {
         return array_merge(

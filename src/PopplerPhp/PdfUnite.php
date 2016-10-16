@@ -31,4 +31,8 @@ class PdfUnite extends PopplerUtil
         // TODO: Implement utilFlagRules() method.
     }
 
+    public function outputExtension()
+    {
+        return '.pdf';
+    }
 }

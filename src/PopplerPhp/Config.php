@@ -35,19 +35,19 @@ class Config
 
         if ($real_path) {
             $real_path = H::parseDirName($real_path);
-            Config::set(C::BIN_DIR, $real_path);
+            self::set(C::BIN_DIR, $real_path);
 
             return $real_path;
         }
         elseif ($dir == C::DEFAULT) {
-            return Config::setBinDirectory(Config::getBinDirectory());
+            return self::setBinDirectory(self::getBinDirectory());
         }
         throw new PopplerPhpException("Poppler bin directory does not exist: ".$dir);
     }
 
     public static function getBinDirectory()
     {
-        return Config::get(C::BIN_DIR, H::parseDirName(realpath(__DIR__.'/../../vendor/bin/poppler')));
+        return self::get(C::BIN_DIR, H::parseDirName(realpath(__DIR__.'/../../vendor/bin/poppler')));
     }
 
     public static function setOutputDirectory($dir, $new = false)
@@ -56,12 +56,12 @@ class Config
 
         if ($real_path) {
             $real_path = H::parseDirName($real_path);
-            Config::set(C::OUTPUT_DIR, $real_path);
+            self::set(C::OUTPUT_DIR, $real_path);
 
             return $real_path;
         }
         elseif ($dir == C::DEFAULT) {
-            return Config::setOutputDirectory(Config::getOutputDirectory());
+            return self::setOutputDirectory(self::getOutputDirectory());
         }
         throw new PopplerPhpException("Output directory does not exist: ".$dir);
     }
@@ -71,6 +71,6 @@ class Config
         $check = is_dir($default);
         $default = $check ? $default : H::parseDirName(__DIR__.'/../../tests/results');
 
-        return Config::get(C::OUTPUT_DIR, realpath($default));
+        return self::get(C::OUTPUT_DIR, realpath($default));
     }
 }

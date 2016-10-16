@@ -20,6 +20,8 @@ class PdfToCairo extends PopplerUtil
     use PageRangeOptions;
     use HelpFlags;
 
+    protected $format;
+
     public function __construct($pdfFile = '', array $options = [])
     {
         $this->bin_file = C::PDF_TO_CAIRO;
@@ -82,7 +84,7 @@ class PdfToCairo extends PopplerUtil
     public function generatePS()
     {
         $this->setOutputFormat(C::_PS);
-        $this->output_file_extension = '.ps';
+        $this->output_file_extension = $this->outputExtension();
 
         return $this->generate();
     }
@@ -90,7 +92,7 @@ class PdfToCairo extends PopplerUtil
     public function generateEPS()
     {
         $this->setOutputFormat(C::_EPS);
-        $this->output_file_extension = '.eps';
+        $this->output_file_extension = $this->outputExtension();
 
         return $this->generate();
     }
@@ -105,7 +107,7 @@ class PdfToCairo extends PopplerUtil
     public function generateSVG()
     {
         $this->setOutputFormat(C::_SVG);
-        $this->output_file_extension = '.svg';
+        $this->output_file_extension = $this->outputExtension();
 
         return $this->generate();
     }
@@ -113,5 +115,36 @@ class PdfToCairo extends PopplerUtil
     public function generate()
     {
         return $this->shellExec();
+    }
+
+    public function outputExtension()
+    {
+        $dot = '.';
+        $extension = null;
+        switch ($this->getOutputFormat()) {
+            case C::_PNG :
+                $extension = 'png';
+            break;
+            case C::_JPEG :
+                $extension = 'jpg';
+            break;
+            case C::_TIFF :
+                $extension = 'tiff';
+            break;
+            case C::_PS :
+                $extension = 'ps';
+            break;
+            case C::_EPS :
+                $extension = 'eps';
+            break;
+            case C::_PDF :
+                $extension = 'pdf';
+            break;
+            case C::_SVG :
+                $extension = 'svg';
+            break;
+        }
+
+        return $dot.$extension;
     }
 }

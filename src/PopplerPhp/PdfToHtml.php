@@ -101,4 +101,9 @@ class PdfToHtml extends PopplerUtil
 
         return $this->products;
     }
+
+    public function outputExtension()
+    {
+        return '.html';
+    }
 }

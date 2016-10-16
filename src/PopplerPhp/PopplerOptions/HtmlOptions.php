@@ -13,6 +13,16 @@ use NcJoes\PopplerPhp\Constants as C;
 
 trait HtmlOptions
 {
+    public function suppressConsoleOutput()
+    {
+        return $this->setFlag(C::_Q);
+    }
+
+    public function outputToConsole()
+    {
+        return $this->setFlag(C::_STDOUT);
+    }
+
     public function setZoomRatio($ratio)
     {
         return $this->setOption(C::_ZOOM, $ratio);

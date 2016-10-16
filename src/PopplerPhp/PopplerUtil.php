@@ -211,7 +211,7 @@ abstract class PopplerUtil
             $command[] = $options;
         }
 
-        $command[] = $q.$this->source_pdf.$q;
+        $command[] = $q.$this->sourcePdf().$q;
 
         if ($this->require_output_dir) {
             $directory = $this->getOutputPath();
@@ -252,6 +252,11 @@ abstract class PopplerUtil
         return Config::getBinDirectory();
     }
 
+    public function sourcePdf()
+    {
+        return $this->source_pdf;
+    }
+
     public function setOutputFilenamePrefix($name)
     {
         $name = H::parseFileName($name);
@@ -269,12 +274,14 @@ abstract class PopplerUtil
             return $this->output_file_name;
         }
 
-        $base = basename($this->source_pdf);
+        $base = basename($this->sourcePdf());
         $default_name = str_replace('.pdf', '', $base);
         $this->output_file_name = $default_name;
 
         return $default_name;
     }
+
+    abstract public function outputExtension();
 
     abstract public function utilOptions();
 

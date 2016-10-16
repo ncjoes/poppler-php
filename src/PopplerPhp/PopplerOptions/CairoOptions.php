@@ -13,12 +13,20 @@ use NcJoes\PopplerPhp\Constants as C;
 
 trait CairoOptions
 {
+    public function getOutputFormat()
+    {
+        return $this->format;
+    }
+
     public function setOutputFormat($format)
     {
-        if (in_array($format, $this->cairoFormatFlags()))
+        if (in_array($format, $this->cairoFormatFlags())) {
+            $this->format = $format;
+
             return $this->setFlag($format);
-        else
-            return $this;
+        }
+
+        return $this;
     }
 
     public function setTiffCompression($options)

@@ -31,4 +31,8 @@ class PdfToText extends PopplerUtil
         // TODO: Implement utilFlagRules() method.
     }
 
+    public function outputExtension()
+    {
+        return '.txt';
+    }
 }
