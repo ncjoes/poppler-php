@@ -22,14 +22,14 @@ It is recommended to install Poppler-PHP through [Composer](http://getcomposer.o
 Run this command within your project directory
 
 ```shell
-composer require ncjoes/poppler-php:~1
+composer require ncjoes/poppler-php
 ```
 
 Or add this line to your `composer.json`
 
 ```json
 {
-	"ncjoes/poppler-php": "~1"
+	"ncjoes/poppler-php": "0.1.*"
 }
 ```
 
@@ -63,8 +63,6 @@ brew install poppler
 ```
 
 ### Usage
-
-Use ```NcJoes\PhpPopler\Config::setBinDirectory($dir)``` to set the location of the poppler-utils binaries in your php code.
 
 Here are some samples.
 
@@ -133,4 +131,4 @@ print_r($pdfToHtml->generate()); //html string
 
 ### Feedback & Contribute
 
-Send me an issue for improvement or any buggy thing. Thanks :+1:
+Notify me of any issues, bugs, or improvements. Thanks :+1:
