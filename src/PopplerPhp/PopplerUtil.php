@@ -60,7 +60,7 @@ abstract class PopplerUtil
 
     public function setOutputSubDir($dir_name)
     {
-        $dir_name = H::parseFileName($dir_name);
+        $dir_name = H::parseDirName($dir_name);
 
         if (!empty($dir_name)) {
             $this->output_sub_dir = $dir_name;
@@ -93,7 +93,7 @@ abstract class PopplerUtil
 
             return $this;
         }
-        throw new PopplerPhpException("Unknown '".get_class($this)."' Option (or Invalid Type): ".$key.'('.gettype($value).')');
+        throw new PopplerPhpException("Unknown '".get_class($this)."' Option (or Invalid Type): ".$key.'='.$value.' ('.gettype($value).')');
     }
 
     public function unsetOption($key)
@@ -191,7 +191,7 @@ abstract class PopplerUtil
         if ($this->require_output_dir) {
             $outputDir = $this->getOutputPath();
             if (!file_exists($outputDir))
-                mkdir($outputDir, 0777, true);
+                @mkdir($outputDir, 0777, true);
         }
 
         /**
