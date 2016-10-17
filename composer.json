@@ -22,5 +22,5 @@
             "NcJoes\\PopplerPhp\\" : "src/PopplerPhp"
         }
     },
-    "minimum-stability" : "dev"
+    "minimum-stability" : "stable"
 }
