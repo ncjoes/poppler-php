@@ -129,6 +129,9 @@ print_r($pdfToHtml->generate()); //html string
 ?>
 ```
 
+### License
+The PopplerPHP package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
 ### Feedback & Contribute
 
 Notify me of any issues, bugs, or improvements. Thanks :+1:
