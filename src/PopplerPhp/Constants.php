@@ -91,7 +91,7 @@ abstract class Constants
     const T_DOUBLE  = 'double';
 
     //Directory Helpers
-    const DS          = "\\";
+    const DS          = DIRECTORY_SEPARATOR;
     const BIN_DIR     = 'ncjoes.poppler-php.bin_dir';
     const OUTPUT_DIR  = 'ncjoes.poppler-php.output_dir';
     const OUTPUT_NAME = 'ncjoes.poppler-php.output_name';

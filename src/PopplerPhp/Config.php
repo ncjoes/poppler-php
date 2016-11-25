@@ -7,15 +7,32 @@ use NcJoes\PopplerPhp\Constants as C;
 use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\Helpers as H;
 
+/**
+ * Class Config
+ *
+ * @package NcJoes\PopplerPhp
+ */
 class Config
 {
+    /**
+     * @var Repository $instance
+     */
     protected static $instance;
 
+    /**
+     * @param $function
+     * @param $arguments
+     *
+     * @return mixed
+     */
     public static function __callStatic($function, $arguments)
     {
         return call_user_func_array([static::getInstance(), $function], $arguments);
     }
 
+    /**
+     * @return mixed
+     */
     public static function getInstance()
     {
         if (!(static::$instance instanceof Repository))
@@ -24,11 +41,22 @@ class Config
         return static::$instance;
     }
 
+    /**
+     * @param $key
+     *
+     * @return bool
+     */
     public static function isSet($key)
     {
         return self::get($key, C::DEFAULT) != C::DEFAULT;
     }
 
+    /**
+     * @param $dir
+     *
+     * @return mixed|string
+     * @throws PopplerPhpException
+     */
     public static function setBinDirectory($dir)
     {
         $real_path = realpath($dir);
@@ -45,11 +73,21 @@ class Config
         throw new PopplerPhpException("Poppler bin directory does not exist: ".$dir);
     }
 
+    /**
+     * @return mixed
+     */
     public static function getBinDirectory()
     {
         return self::get(C::BIN_DIR, H::parseDirName(realpath(__DIR__.'/../../vendor/bin/poppler')));
     }
 
+    /**
+     * @param $dir
+     * @param bool $new
+     *
+     * @return mixed|string
+     * @throws PopplerPhpException
+     */
     public static function setOutputDirectory($dir, $new = false)
     {
         $real_path = $new ? $dir : realpath($dir);
@@ -66,6 +104,11 @@ class Config
         throw new PopplerPhpException("Output directory does not exist: ".$dir);
     }
 
+    /**
+     * @param mixed $default
+     *
+     * @return mixed
+     */
     public static function getOutputDirectory($default = null)
     {
         $check = is_dir($default);

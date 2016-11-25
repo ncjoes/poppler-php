@@ -13,6 +13,11 @@ use NcJoes\PopplerPhp\Constants as C;
 use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\Helpers as H;
 
+/**
+ * Class PopplerUtil
+ *
+ * @package NcJoes\PopplerPhp
+ */
 abstract class PopplerUtil
 {
     protected $bin_file;
@@ -25,6 +30,12 @@ abstract class PopplerUtil
     private   $output_sub_dir;
     private   $output_file_name;
 
+    /**
+     * PopplerUtil constructor.
+     *
+     * @param string $pdfFile
+     * @param array $options
+     */
     public function __construct($pdfFile = '', array $options = [])
     {
         if ($pdfFile !== '') {
@@ -42,6 +53,12 @@ abstract class PopplerUtil
         return $this;
     }
 
+    /**
+     * @param $pdfFile
+     *
+     * @return $this
+     * @throws PopplerPhpException
+     */
     public function open($pdfFile)
     {
         $real_path = H::parseFileRealPath($pdfFile);
@@ -58,6 +75,12 @@ abstract class PopplerUtil
         throw new PopplerPhpException("File not found: ".$real_path);
     }
 
+    /**
+     * @param $dir_name
+     *
+     * @return $this
+     * @throws PopplerPhpException
+     */
     public function setOutputSubDir($dir_name)
     {
         $dir_name = H::parseDirName($dir_name);
@@ -70,6 +93,9 @@ abstract class PopplerUtil
         throw new PopplerPhpException("Directory name must be an alphanumeric string");
     }
 
+    /**
+     * @return string
+     */
     public function getOutputSubDir()
     {
         if (!is_string($this->output_sub_dir)) {
@@ -79,11 +105,21 @@ abstract class PopplerUtil
         return $this->output_sub_dir;
     }
 
+    /**
+     * @return string
+     */
     public function getOutputPath()
     {
         return Config::getOutputDirectory().C::DS.$this->getOutputSubDir();
     }
 
+    /**
+     * @param $key
+     * @param $value
+     *
+     * @return $this
+     * @throws PopplerPhpException
+     */
     public function setOption($key, $value)
     {
         $util_options = $this->utilOptions();
@@ -96,6 +132,11 @@ abstract class PopplerUtil
         throw new PopplerPhpException("Unknown '".get_class($this)."' Option (or Invalid Type): ".$key.'='.$value.' ('.gettype($value).')');
     }
 
+    /**
+     * @param $key
+     *
+     * @return $this
+     */
     public function unsetOption($key)
     {
         if ($this->hasOption($key))
@@ -104,11 +145,22 @@ abstract class PopplerUtil
         return $this;
     }
 
+    /**
+     * @param $key
+     *
+     * @return bool
+     */
     public function hasOption($key)
     {
         return array_key_exists($key, $this->options);
     }
 
+    /**
+     * @param $key
+     *
+     * @return $this
+     * @throws PopplerPhpException
+     */
     public function setFlag($key)
     {
         $util_flags = $this->utilFlags();
@@ -121,6 +173,11 @@ abstract class PopplerUtil
         throw new PopplerPhpException("Unknown '".get_class($this)."' Flag: ".$key);
     }
 
+    /**
+     * @param $key
+     *
+     * @return $this
+     */
     public function unsetFlag($key)
     {
         if ($this->hasFlag($key))
@@ -129,41 +186,71 @@ abstract class PopplerUtil
         return $this;
     }
 
+    /**
+     * @param $key
+     *
+     * @return bool
+     */
     public function hasFlag($key)
     {
         return array_key_exists($key, $this->flags);
     }
 
+    /**
+     * @param $key
+     *
+     * @return mixed|null
+     */
     public function getOption($key)
     {
         return $this->hasOption($key) ? $this->options[ $key ] : null;
     }
 
+    /**
+     * @param $key
+     *
+     * @return mixed|null
+     */
     public function getFlag($key)
     {
         return $this->hasFlag($key) ? $this->flags[ $key ] : null;
     }
 
+    /**
+     * @return array
+     */
     public function getOptions()
     {
         return $this->options;
     }
 
+    /**
+     * @return array
+     */
     public function getFlags()
     {
         return $this->flags;
     }
 
+    /**
+     * @return string
+     */
     public function previewShellCommand()
     {
         return $this->makeShellCommand();
     }
 
+    /**
+     * @return string
+     */
     public function previewShellOptions()
     {
         return $this->makeShellOptions();
     }
 
+    /**
+     * @return $this
+     */
     public function clearUtilOutputs()
     {
         $directory = $this->getOutputPath();
@@ -184,6 +271,9 @@ abstract class PopplerUtil
         return $this;
     }
 
+    /**
+     * @return string
+     */
     protected function shellExec()
     {
         $command = $this->makeShellCommand();
@@ -200,6 +290,9 @@ abstract class PopplerUtil
         return shell_exec($command);
     }
 
+    /**
+     * @return string
+     */
     private function makeShellCommand()
     {
         $q = PHP_OS === 'WINNT' ? "\"" : "'";
@@ -224,6 +317,9 @@ abstract class PopplerUtil
         return implode(' ', $command);
     }
 
+    /**
+     * @return string
+     */
     private function makeShellOptions()
     {
         $generated = [];
@@ -238,6 +334,11 @@ abstract class PopplerUtil
         return implode(' ', $generated);
     }
 
+    /**
+     * @param string $dir
+     *
+     * @return $this
+     */
     public function binDir($dir = '')
     {
         if (!empty($dir)) {
@@ -252,11 +353,20 @@ abstract class PopplerUtil
         return Config::getBinDirectory();
     }
 
+    /**
+     * @return mixed
+     */
     public function sourcePdf()
     {
         return $this->source_pdf;
     }
 
+    /**
+     * @param $name
+     *
+     * @return $this
+     * @throws PopplerPhpException
+     */
     public function setOutputFilenamePrefix($name)
     {
         $name = H::parseFileName($name);
@@ -268,6 +378,9 @@ abstract class PopplerUtil
         throw new PopplerPhpException("Filename must be an alphanumeric string");
     }
 
+    /**
+     * @return mixed
+     */
     public function getOutputFilenamePrefix()
     {
         if (!empty($this->output_file_name)) {
@@ -281,14 +394,29 @@ abstract class PopplerUtil
         return $default_name;
     }
 
+    /**
+     * @return mixed
+     */
     abstract public function outputExtension();
 
+    /**
+     * @return mixed
+     */
     abstract public function utilOptions();
 
+    /**
+     * @return mixed
+     */
     abstract public function utilFlags();
 
+    /**
+     * @return mixed
+     */
     abstract public function utilOptionRules();
 
+    /**
+     * @return mixed
+     */
     abstract public function utilFlagRules();
 
 }

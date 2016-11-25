@@ -29,7 +29,7 @@ abstract class Helpers
 
     public static function parseFileRealPath($dir)
     {
-        $dir = str_replace('/', C::DS, $dir);
+        $dir = str_replace('\\', C::DS, $dir);
 
         return $dir;
     }
