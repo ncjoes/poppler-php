@@ -66,7 +66,7 @@ abstract class PopplerUtil
         if (is_file($real_path)) {
             $this->source_pdf = $real_path;
 
-            if (!Config::isSet(C::OUTPUT_DIR)) {
+            if (!Config::isKeySet(C::OUTPUT_DIR)) {
                 Config::setOutputDirectory(dirname($pdfFile));
             }
 

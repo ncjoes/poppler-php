@@ -46,7 +46,7 @@ class Config
      *
      * @return bool
      */
-    public static function isSet($key)
+    public static function isKeySet($key)
     {
         return self::get($key, C::DEFAULT) != C::DEFAULT;
     }
