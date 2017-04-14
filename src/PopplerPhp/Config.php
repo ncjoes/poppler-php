@@ -48,7 +48,7 @@ class Config
      */
     public static function isKeySet($key)
     {
-        return self::get($key, C::DEFAULT) != C::DEFAULT;
+        return self::get($key, C::DFT) != C::DFT;
     }
 
     /**
@@ -67,7 +67,7 @@ class Config
 
             return $real_path;
         }
-        elseif ($dir == C::DEFAULT) {
+        elseif ($dir == C::DFT) {
             return self::setBinDirectory(self::getBinDirectory());
         }
         throw new PopplerPhpException("Poppler bin directory does not exist: ".$dir);
@@ -98,7 +98,7 @@ class Config
 
             return $real_path;
         }
-        elseif ($dir == C::DEFAULT) {
+        elseif ($dir == C::DFT) {
             return self::setOutputDirectory(self::getOutputDirectory());
         }
         throw new PopplerPhpException("Output directory does not exist: ".$dir);

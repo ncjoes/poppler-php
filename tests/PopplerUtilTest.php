@@ -50,7 +50,7 @@ class PopplerUtilTest extends PHPUnit_Framework_TestCase
 
     public function testOutputDirMethodSetterAndGetter()
     {
-        Config::setOutputDirectory(Config::getOutputDirectory(C::DEFAULT));
+        Config::setOutputDirectory(Config::getOutputDirectory(C::DFT));
         $this->assertTrue(Config::isKeySet(C::OUTPUT_DIR));
 
         $source_file = __DIR__.'/sources/test1.pdf';

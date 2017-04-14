@@ -16,7 +16,7 @@ class PdfInfoTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        Config::setOutputDirectory(C::DEFAULT);
+        Config::setOutputDirectory(C::DFT);
     }
 
     public function testGetInfo()

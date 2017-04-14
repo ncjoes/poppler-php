@@ -97,5 +97,5 @@ abstract class Constants
     const OUTPUT_NAME = 'ncjoes.poppler-php.output_name';
 
     //Config Helpers
-    const DEFAULT     = '_d_';
+    const DFT = '_d_';
 }

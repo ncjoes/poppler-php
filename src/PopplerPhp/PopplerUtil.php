@@ -346,7 +346,7 @@ abstract class PopplerUtil
 
             return $this;
         }
-        elseif ($dir == C::DEFAULT) {
+        elseif ($dir == C::DFT) {
             $this->binary_dir = Config::setBinDirectory(Config::getBinDirectory());
         }
 
