@@ -112,7 +112,7 @@ class Config
     public static function getOutputDirectory($default = null)
     {
         $check = is_dir($default);
-        $default = $check ? $default : H::parseDirName(__DIR__.'/../../tests/results');
+        $default = $check ? $default : H::parseDirName(C::DEFAULT_OUTPUT_DIR);
 
         return self::get(C::OUTPUT_DIR, realpath($default));
     }
