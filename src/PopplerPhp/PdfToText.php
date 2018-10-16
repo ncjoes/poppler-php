@@ -9,30 +9,66 @@
 
 namespace NcJoes\PopplerPhp;
 
+use NcJoes\PopplerPhp\Constants as C;
+use NcJoes\PopplerPhp\PopplerOptions\ConsoleFlags;
+use NcJoes\PopplerPhp\PopplerOptions\CredentialOptions;
+use NcJoes\PopplerPhp\PopplerOptions\EncodingOptions;
+use NcJoes\PopplerPhp\PopplerOptions\HtmlOptions;
+use NcJoes\PopplerPhp\PopplerOptions\PageRangeOptions;
+use NcJoes\PopplerPhp\PopplerOptions\TextFlags;
+
 class PdfToText extends PopplerUtil
 {
+    use PageRangeOptions;
+    use ConsoleFlags;
+    use HtmlOptions;
+    use EncodingOptions;
+    use CredentialOptions;
+    use TextFlags;
+
+
+    public function __construct($pdfFile = '', array $options = [])
+    {
+        $this->bin_file = C::PDF_TO_TEXT;
+        return parent::__construct($pdfFile, $options);
+    }
+
     public function utilOptions()
     {
-        // TODO: Implement utilOptions() method.
+        return array_merge(
+            $this->pageRangeOptions(),
+            $this->htmlOptions(),
+            $this->credentialOptions(),
+            $this->encodingOptions()
+        );
     }
 
     public function utilOptionRules()
     {
-        // TODO: Implement utilOptionRules() method.
+        return [
+            'alt' => [],
+        ];
     }
 
     public function utilFlags()
     {
-        // TODO: Implement utilFlags() method.
+        return $this->textFlags();
     }
 
     public function utilFlagRules()
     {
-        // TODO: Implement utilFlagRules() method.
+        return [
+            'alt' => [],
+        ];
     }
 
     public function outputExtension()
     {
         return '.txt';
+    }
+
+    public function generate()
+    {
+        return $this->shellExec();
     }
 }

@@ -14,6 +14,7 @@ use NcJoes\PopplerPhp\PopplerOptions\ConsoleFlags;
 use NcJoes\PopplerPhp\PopplerOptions\CredentialOptions;
 use NcJoes\PopplerPhp\PopplerOptions\DateFlags;
 use NcJoes\PopplerPhp\PopplerOptions\EncodingOptions;
+use NcJoes\PopplerPhp\PopplerOptions\InfoFlags;
 use NcJoes\PopplerPhp\PopplerOptions\PageRangeOptions;
 
 class PdfInfo extends PopplerUtil
@@ -23,6 +24,7 @@ class PdfInfo extends PopplerUtil
     use EncodingOptions;
     use PageRangeOptions;
     use ConsoleFlags;
+    use InfoFlags;
 
     private $pdf_info;
 
@@ -211,6 +213,7 @@ class PdfInfo extends PopplerUtil
     public function utilFlags()
     {
         return array_merge(
+            $this->infoFlags(),
             $this->dateFlags(),
             $this->encodingFlags(),
             $this->allConsoleFlags()

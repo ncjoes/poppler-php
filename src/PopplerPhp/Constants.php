@@ -84,6 +84,9 @@ abstract class Constants
     const _ICC         = '-icc';
     const _LEVEL2      = '-level2';
     const _LEVEL3      = '-level3';
+    const _BBOX_LAYOUT = '-bbox-layout';
+    const _LAYOUT      = '-layout';
+    const _BOX         = '-box';
 
     //Poppler Option DataTypes
     const T_STRING  = 'string';

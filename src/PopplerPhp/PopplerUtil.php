@@ -22,7 +22,8 @@ abstract class PopplerUtil
 {
     protected $bin_file;
     protected $output_file_extension;
-    protected $require_output_dir = true;
+    protected $require_output_dir   = true;
+    protected $require_sub_dir      = true;
     private   $binary_dir;
     private   $flags              = [];
     private   $options            = [];
@@ -30,11 +31,12 @@ abstract class PopplerUtil
     private   $output_sub_dir;
     private   $output_file_name;
 
+
     /**
      * PopplerUtil constructor.
-     *
      * @param string $pdfFile
      * @param array $options
+     * @throws PopplerPhpException
      */
     public function __construct($pdfFile = '', array $options = [])
     {
@@ -110,7 +112,7 @@ abstract class PopplerUtil
      */
     public function getOutputPath()
     {
-        return Config::getOutputDirectory().C::DS.$this->getOutputSubDir();
+        return Config::getOutputDirectory() . C::DS . ($this->isSubDirRequired() ? $this->getOutputSubDir() : '') ;
     }
 
     /**
@@ -392,6 +394,36 @@ abstract class PopplerUtil
         $this->output_file_name = $default_name;
 
         return $default_name;
+    }
+
+    /**
+     * @param bool $bool
+     * @return $this
+     */
+    public function setRequireOutputDir($bool)
+    {
+        $this->require_output_dir = $bool;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSubDirRequired()
+    {
+        return $this->output_sub_dir;
+    }
+
+    /**
+     * @param bool $bool
+     * @return $this
+     */
+    public function setSubDirRequired ($bool)
+    {
+        $this->output_sub_dir = $bool;
+
+        return $this;
     }
 
     /**
