@@ -9,8 +9,28 @@
 
 namespace NcJoes\PopplerPhp;
 
+use NcJoes\PopplerPhp\Constants as C;
+use NcJoes\PopplerPhp\PopplerOptions\CairoOptions;
+use NcJoes\PopplerPhp\PopplerOptions\HelpFlags;
+use NcJoes\PopplerPhp\PopplerOptions\PageRangeOptions;
+
+
 class PdfSeparate extends PopplerUtil
 {
+    /**
+     * PdfSeparate constructor.
+     *
+     * @param string $pdfFile
+     * @param array $options
+     */
+    public function __construct($pdfFile = '', array $options = [])
+    {
+        $this->bin_file = C::PDF_SEPARATE;
+
+        return parent::__construct($pdfFile, $options);
+    }
+
+
     public function utilOptions()
     {
         // TODO: Implement utilOptions() method.
@@ -35,4 +55,16 @@ class PdfSeparate extends PopplerUtil
     {
         return '.pdf';
     }
+
+    /**
+     * @return string
+     */
+    public function generate()
+    {
+        $this->output_file_extension = $this->outputExtension();
+
+        return $this->shellExec();
+    }
+
+
 }

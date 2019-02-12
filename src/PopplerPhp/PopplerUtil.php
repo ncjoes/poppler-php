@@ -22,6 +22,7 @@ abstract class PopplerUtil
 {
     protected $bin_file;
     protected $output_file_extension;
+    protected $output_file_suffix = '';
     protected $require_output_dir = true;
     private   $binary_dir;
     private   $flags              = [];
@@ -311,7 +312,7 @@ abstract class PopplerUtil
 
             $output_path = H::parseDirName($directory.C::DS.$this->getOutputFilenamePrefix());
 
-            $command[] = $q.$output_path.$this->output_file_extension.$q;
+            $command[] = $q . $output_path . $this->output_file_suffix . $this->output_file_extension . $q;
         }
 
         return implode(' ', $command);
@@ -377,6 +378,19 @@ abstract class PopplerUtil
         }
         throw new PopplerPhpException("Filename must be an alphanumeric string");
     }
+
+    /**
+     * @param $name
+     *
+     * @return $this
+     * @throws PopplerPhpException
+     */
+    public function setOutputFilenameSuffix($suffix = '')
+    {
+        $this->output_file_suffix = $suffix;
+        return $this;
+    }
+
 
     /**
      * @return mixed
