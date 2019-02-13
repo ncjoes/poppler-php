@@ -10,9 +10,23 @@
 namespace NcJoes\PopplerPhp;
 
 use NcJoes\PopplerPhp\Constants as C;
+use NcJoes\PopplerPhp\PopplerOptions\ConsoleFlags;
+use NcJoes\PopplerPhp\PopplerOptions\CredentialOptions;
+use NcJoes\PopplerPhp\PopplerOptions\EncodingOptions;
+use NcJoes\PopplerPhp\PopplerOptions\HtmlOptions;
+use NcJoes\PopplerPhp\PopplerOptions\PageRangeOptions;
+use NcJoes\PopplerPhp\PopplerOptions\TextFlags;
 
 class PdfToText extends PopplerUtil
 {
+    use PageRangeOptions;
+    use ConsoleFlags;
+    use HtmlOptions;
+    use EncodingOptions;
+    use CredentialOptions;
+    use TextFlags;
+
+
      /**
      * PdfToCairo constructor.
      *
@@ -28,22 +42,31 @@ class PdfToText extends PopplerUtil
 
     public function utilOptions()
     {
-         return $this->pageRangeOptions();
+        return array_merge(
+            $this->pageRangeOptions(),
+            $this->htmlOptions(),
+            $this->credentialOptions(),
+            $this->encodingOptions()
+        );
     }
 
     public function utilOptionRules()
     {
-        return [];
+        return [
+            'alt' => [],
+        ];
     }
 
     public function utilFlags()
     {
-        return [];
+        return $this->textFlags();
     }
 
     public function utilFlagRules()
     {
-        return [];
+        return [
+            'alt' => [],
+        ];
     }
 
     public function outputExtension()
