@@ -101,7 +101,7 @@ abstract class PopplerUtil
      */
     public function getOutputSubDir()
     {
-        if (!is_string($this->output_sub_dir)) {
+        if ($this->isSubDirRequired() && empty($this->output_sub_dir)) {
             $this->output_sub_dir = uniqid('test-'.date('m-d-Y_H-i'));
         }
 
