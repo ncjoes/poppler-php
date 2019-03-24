@@ -23,7 +23,7 @@ abstract class PopplerUtil
     protected $bin_file;
     protected $output_file_extension;
     protected $require_output_dir = true;
-    protected $require_sub_dir    = true;
+    protected $require_sub_dir    = false;
     protected $output_file_suffix = '';
     private   $binary_dir;
     private   $flags              = [];
@@ -426,7 +426,7 @@ abstract class PopplerUtil
      */
     public function isSubDirRequired()
     {
-        return $this->output_sub_dir;
+        return $this->require_sub_dir;
     }
 
     /**
@@ -435,7 +435,7 @@ abstract class PopplerUtil
      */
     public function setSubDirRequired($bool)
     {
-        $this->output_sub_dir = $bool;
+        $this->require_sub_dir = $bool;
 
         return $this;
     }
