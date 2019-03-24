@@ -113,7 +113,13 @@ abstract class PopplerUtil
      */
     public function getOutputPath()
     {
-        return Config::getOutputDirectory().C::DS.($this->isSubDirRequired() ? $this->getOutputSubDir() : '');
+        $output_sub_dir = $this->getOutputSubDir();
+
+        if ($this->isSubDirRequired() && !empty($output_sub_dir)) {
+            return Config::getOutputDirectory().C::DS.$output_sub_dir;
+        }
+
+        return Config::getOutputDirectory();
     }
 
     /**
