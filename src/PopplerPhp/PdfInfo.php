@@ -30,7 +30,7 @@ class PdfInfo extends PopplerUtil
 
     public function __construct($pdfFile = '', array $options = [])
     {
-        $this->require_output_dir = false;
+        $this->setRequireOutputDir(false);
         $this->bin_file = C::PDF_INFO;
 
         return parent::__construct($pdfFile, $options);
