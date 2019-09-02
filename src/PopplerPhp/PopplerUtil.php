@@ -23,7 +23,7 @@ abstract class PopplerUtil
     protected $bin_file;
     protected $output_file_extension;
     protected $require_output_dir = true;
-    protected $require_sub_dir    = true;
+    protected $require_sub_dir    = false;
     protected $output_file_suffix = '';
     private   $binary_dir;
     private   $flags              = [];
@@ -101,7 +101,7 @@ abstract class PopplerUtil
      */
     public function getOutputSubDir()
     {
-        if (!is_string($this->output_sub_dir)) {
+        if ($this->isSubDirRequired() && empty($this->output_sub_dir)) {
             $this->output_sub_dir = uniqid('test-'.date('m-d-Y_H-i'));
         }
 
@@ -113,7 +113,13 @@ abstract class PopplerUtil
      */
     public function getOutputPath()
     {
-        return Config::getOutputDirectory().C::DS.($this->isSubDirRequired() ? $this->getOutputSubDir() : '');
+        $output_sub_dir = $this->getOutputSubDir();
+
+        if ($this->isSubDirRequired() && !empty($output_sub_dir)) {
+            return Config::getOutputDirectory().C::DS.$output_sub_dir;
+        }
+
+        return Config::getOutputDirectory();
     }
 
     /**
@@ -426,7 +432,7 @@ abstract class PopplerUtil
      */
     public function isSubDirRequired()
     {
-        return $this->output_sub_dir;
+        return $this->require_sub_dir;
     }
 
     /**
@@ -435,7 +441,7 @@ abstract class PopplerUtil
      */
     public function setSubDirRequired($bool)
     {
-        $this->output_sub_dir = $bool;
+        $this->require_sub_dir = $bool;
 
         return $this;
     }
