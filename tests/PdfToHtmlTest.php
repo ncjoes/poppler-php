@@ -8,15 +8,25 @@
  **/
 
 use NcJoes\PopplerPhp\Config;
+use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\PdfToHtml;
 
+/**
+ * Class PdfToHtmlTest
+ */
 class PdfToHtmlTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     *
+     */
     public function setUp()
     {
         parent::setUp();
     }
 
+    /**
+     * @throws PopplerPhpException
+     */
     public function testGenerateMethod()
     {
         Config::setOutputDirectory(Config::getOutputDirectory(true), true);

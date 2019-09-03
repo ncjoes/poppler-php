@@ -9,15 +9,25 @@
 
 use NcJoes\PopplerPhp\Config;
 use NcJoes\PopplerPhp\Constants as C;
+use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\PdfToCairo;
 
+/**
+ * Class PdfToCairoTest
+ */
 class PdfToCairoTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     *
+     */
     public function setUp()
     {
         parent::setUp();
     }
 
+    /**
+     * @throws PopplerPhpException
+     */
     public function testGeneratorMethods()
     {
         Config::setOutputDirectory(Config::getOutputDirectory());

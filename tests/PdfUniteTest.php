@@ -1,14 +1,19 @@
 <?php
 
 use NcJoes\PopplerPhp\Config;
-use NcJoes\PopplerPhp\Constants as C;
-use NcJoes\PopplerPhp\PdfUnite;
-use NcJoes\PopplerPhp\PdfInfo;
 use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
+use NcJoes\PopplerPhp\PdfInfo;
+use NcJoes\PopplerPhp\PdfUnite;
 
+/**
+ * Class PdfUniteTest
+ */
 class PdfUniteTest extends PHPUnit_Framework_TestCase
 {
 
+    /**
+     *
+     */
     public function setUp()
     {
         parent::setUp();
@@ -31,6 +36,9 @@ class PdfUniteTest extends PHPUnit_Framework_TestCase
         new PdfUnite([__DIR__.$DS."sources{$DS}test3.pdf"]);
     }
 
+    /**
+     * @throws PopplerPhpException
+     */
     public function testGenerate()
     {
         $DS = DIRECTORY_SEPARATOR;
@@ -47,10 +55,10 @@ class PdfUniteTest extends PHPUnit_Framework_TestCase
         $output_file_ext = $pdf_unite->outputExtension();
 
         $expected_output_file = "{$output_dir}{$DS}{$output_file_prefix}{$output_file_ext}";
-        $this->assertFileExists($expected_output_file);
+        static::assertFileExists($expected_output_file);
 
         $pdf_info = new PdfInfo($expected_output_file);
-        $this->assertEquals(16 * 3, intval($pdf_info->getNumOfPages()));
+        static::assertEquals(16 * 3, intval($pdf_info->getNumOfPages()));
     }
 
 }

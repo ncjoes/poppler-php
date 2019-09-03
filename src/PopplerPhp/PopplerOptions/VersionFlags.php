@@ -11,13 +11,23 @@ namespace NcJoes\PopplerPhp\PopplerOptions;
 
 use NcJoes\PopplerPhp\Constants as C;
 
+/**
+ * Trait VersionFlags
+ * @package NcJoes\PopplerPhp\PopplerOptions
+ */
 trait VersionFlags
 {
+    /**
+     * @return mixed
+     */
     public function printVersionInfo()
     {
         return $this->setFlag(C::_V);
     }
 
+    /**
+     * @return array
+     */
     protected function versionFlags()
     {
         return [C::_V];

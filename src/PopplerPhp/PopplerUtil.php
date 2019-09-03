@@ -9,9 +9,14 @@
 
 namespace NcJoes\PopplerPhp;
 
+use FilesystemIterator;
 use NcJoes\PopplerPhp\Constants as C;
 use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\Helpers as H;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use function is_array;
+use function is_string;
 
 /**
  * Class PopplerUtil
@@ -20,17 +25,50 @@ use NcJoes\PopplerPhp\Helpers as H;
  */
 abstract class PopplerUtil
 {
-    protected $bin_file;
-    protected $output_file_extension;
-    protected $require_output_dir = true;
-    protected $require_sub_dir    = false;
-    protected $output_file_suffix = '';
-    protected $source_pdfs        = [];
-    private   $binary_dir;
-    private   $flags              = [];
-    private   $options            = [];
-    private   $output_sub_dir;
-    private   $output_file_name_prefix;
+    /**
+     * @var string
+     */
+    protected $binFile;
+    /**
+     * @var
+     */
+    protected $outputFileExtension;
+    /**
+     * @var bool
+     */
+    protected $requireOutputDir = true;
+    /**
+     * @var bool
+     */
+    protected $requireSubDir = false;
+    /**
+     * @var string
+     */
+    protected $outputFileSuffix = '';
+    /**
+     * @var array
+     */
+    protected $sourcePdfs = [];
+    /**
+     * @var string
+     */
+    private $binaryDir;
+    /**
+     * @var array
+     */
+    private $flags = [];
+    /**
+     * @var array
+     */
+    private $options = [];
+    /**
+     * @var string
+     */
+    private $outputSubDir;
+    /**
+     * @var string
+     */
+    private $outputFileNamePrefix;
 
 
     /**
@@ -88,7 +126,7 @@ abstract class PopplerUtil
         $dir_name = H::parseDirName($dir_name);
 
         if (!empty($dir_name)) {
-            $this->output_sub_dir = $dir_name;
+            $this->outputSubDir = $dir_name;
 
             return $this;
         }
@@ -100,11 +138,11 @@ abstract class PopplerUtil
      */
     public function getOutputSubDir()
     {
-        if ($this->isSubDirRequired() && empty($this->output_sub_dir)) {
-            $this->output_sub_dir = uniqid('test-'.date('m-d-Y_H-i'));
+        if ($this->isSubDirRequired() && empty($this->outputSubDir)) {
+            $this->outputSubDir = uniqid('test-'.date('m-d-Y_H-i'));
         }
 
-        return $this->output_sub_dir;
+        return $this->outputSubDir;
     }
 
     /**
@@ -132,8 +170,8 @@ abstract class PopplerUtil
     {
         $util_options = $this->utilOptions();
 
-        if (array_key_exists($key, $util_options) and $util_options[ $key ] == gettype($value)) {
-            $this->options[ $key ] = $value;
+        if (array_key_exists($key, $util_options) and $util_options[$key] == gettype($value)) {
+            $this->options[$key] = $value;
 
             return $this;
         }
@@ -174,7 +212,7 @@ abstract class PopplerUtil
         $util_flags = $this->utilFlags();
 
         if (in_array($key, $util_flags)) {
-            $this->flags[ $key ] = $key;
+            $this->flags[$key] = $key;
 
             return $this;
         }
@@ -211,7 +249,7 @@ abstract class PopplerUtil
      */
     public function getOption($key)
     {
-        return $this->hasOption($key) ? $this->options[ $key ] : null;
+        return $this->hasOption($key) ? $this->options[$key] : null;
     }
 
     /**
@@ -221,7 +259,7 @@ abstract class PopplerUtil
      */
     public function getFlag($key)
     {
-        return $this->hasFlag($key) ? $this->flags[ $key ] : null;
+        return $this->hasFlag($key) ? $this->flags[$key] : null;
     }
 
     /**
@@ -242,6 +280,7 @@ abstract class PopplerUtil
 
     /**
      * @return string
+     * @throws PopplerPhpException
      */
     public function previewShellCommand()
     {
@@ -263,10 +302,10 @@ abstract class PopplerUtil
     {
         $directory = $this->getOutputPath();
 
-        $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory, \FilesystemIterator::SKIP_DOTS));
+        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory, FilesystemIterator::SKIP_DOTS));
 
         foreach ($files as $file) {
-            $path = (string)$file;
+            $path = (string) $file;
             $basename = basename($path);
             if ($basename != '..' && $basename != ".gitignore") {
                 if (is_file($path) && file_exists($path))
@@ -298,18 +337,23 @@ abstract class PopplerUtil
         return shell_exec($command);
     }
 
-    protected function getShellQuoteStr() {
+    /**
+     * @return string
+     */
+    protected function getShellQuoteStr()
+    {
         return PHP_OS === 'WINNT' ? "\"" : "'";
     }
 
     /**
      * @return string
+     * @throws PopplerPhpException
      */
     private function makeShellCommand()
     {
         $q = $this->getShellQuoteStr();
 
-        $bin = H::parseDirName($q.$this->binDir().C::DS.$this->bin_file.$q);
+        $bin = PHP_OS === 'WINNT' ? H::parseDirName($q.$this->binDir().C::DS.$this->binFile.$q) : $q.$this->binFile.$q;
 
         $opts_and_args = array_merge(
             $this->makeShellOptions(),
@@ -323,15 +367,16 @@ abstract class PopplerUtil
      * @param string $dir
      *
      * @return $this
+     * @throws PopplerPhpException
      */
     public function binDir($dir = '')
     {
         if (!empty($dir)) {
-            $this->binary_dir = Config::setBinDirectory($dir);
+            $this->binaryDir = Config::setBinDirectory($dir);
 
             return $this;
         } elseif ($dir == C::DFT) {
-            $this->binary_dir = Config::setBinDirectory(Config::getBinDirectory());
+            $this->binaryDir = Config::setBinDirectory(Config::getBinDirectory());
         }
 
         return Config::getBinDirectory();
@@ -374,7 +419,8 @@ abstract class PopplerUtil
     protected function makeShellArgSrc()
     {
         $q = $this->getShellQuoteStr();
-        return array_map(function($src_pdf) use($q) {
+
+        return array_map(function ($src_pdf) use ($q) {
             return "{$q}{$src_pdf}{$q}";
         }, $this->getSourcePdfs());
     }
@@ -391,7 +437,7 @@ abstract class PopplerUtil
         if ($this->isOutputDirRequired()) {
             $directory = $this->getOutputPath();
             $output_path = H::parseDirName($directory.C::DS.$this->getOutputFilenamePrefix());
-            $generated[] = $q.$output_path.$this->output_file_suffix.$this->output_file_extension.$q;
+            $generated[] = $q.$output_path.$this->outputFileSuffix.$this->outputFileExtension.$q;
         }
 
         return $generated;
@@ -402,7 +448,7 @@ abstract class PopplerUtil
      */
     public function getSourcePdfs()
     {
-        return $this->source_pdfs;
+        return $this->sourcePdfs;
     }
 
     /**
@@ -411,10 +457,10 @@ abstract class PopplerUtil
      */
     public function setSourcePdfs($src)
     {
-        if (\is_string($src)) {
-            $this->source_pdfs = [$src];
-        } elseif (\is_array($src)) {
-            $this->source_pdfs = $src;
+        if (is_string($src)) {
+            $this->sourcePdfs = [$src];
+        } elseif (is_array($src)) {
+            $this->sourcePdfs = $src;
         } else {
             throw new PopplerPhpException("src must be string or array");
         }
@@ -432,7 +478,7 @@ abstract class PopplerUtil
     {
         $name = H::parseFileName($name);
         if (!empty($name)) {
-            $this->output_file_name_prefix = $name;
+            $this->outputFileNamePrefix = $name;
 
             return $this;
         }
@@ -447,7 +493,8 @@ abstract class PopplerUtil
      */
     public function setOutputFilenameSuffix($suffix = '')
     {
-        $this->output_file_suffix = $suffix;
+        $this->outputFileSuffix = $suffix;
+
         return $this;
     }
 
@@ -456,13 +503,13 @@ abstract class PopplerUtil
      */
     public function getOutputFilenamePrefix()
     {
-        if (!empty($this->output_file_name_prefix)) {
-            return $this->output_file_name_prefix;
+        if (!empty($this->outputFileNamePrefix)) {
+            return $this->outputFileNamePrefix;
         }
 
         $base = basename($this->getSourcePdfs()[0]);
         $default_name = str_replace('.pdf', '', $base);
-        $this->output_file_name_prefix = $default_name;
+        $this->outputFileNamePrefix = $default_name;
 
         return $default_name;
     }
@@ -472,7 +519,7 @@ abstract class PopplerUtil
      */
     public function getOutputFilenameSuffix()
     {
-        return $this->output_file_suffix;
+        return $this->outputFileSuffix;
     }
 
     /**
@@ -481,7 +528,7 @@ abstract class PopplerUtil
      */
     public function setRequireOutputDir($bool)
     {
-        $this->require_output_dir = $bool;
+        $this->requireOutputDir = $bool;
 
         return $this;
     }
@@ -491,7 +538,7 @@ abstract class PopplerUtil
      */
     public function isOutputDirRequired()
     {
-        return $this->require_output_dir;
+        return $this->requireOutputDir;
     }
 
     /**
@@ -499,7 +546,7 @@ abstract class PopplerUtil
      */
     public function isSubDirRequired()
     {
-        return $this->require_sub_dir;
+        return $this->requireSubDir;
     }
 
     /**
@@ -508,7 +555,7 @@ abstract class PopplerUtil
      */
     public function setSubDirRequired($bool)
     {
-        $this->require_sub_dir = $bool;
+        $this->requireSubDir = $bool;
 
         return $this;
     }

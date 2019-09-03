@@ -11,13 +11,24 @@ namespace NcJoes\PopplerPhp\PopplerOptions;
 
 use NcJoes\PopplerPhp\Constants as C;
 
+/**
+ * Trait CairoOptions
+ * @package NcJoes\PopplerPhp\PopplerOptions
+ */
 trait CairoOptions
 {
+    /**
+     * @return mixed
+     */
     public function getOutputFormat()
     {
         return $this->format;
     }
 
+    /**
+     * @param $format
+     * @return $this
+     */
     public function setOutputFormat($format)
     {
         if (in_array($format, $this->cairoFormatFlags())) {
@@ -29,11 +40,20 @@ trait CairoOptions
         return $this;
     }
 
+    /**
+     * @param $options
+     * @return mixed
+     */
     public function setTiffCompression($options)
     {
         return $this->setOption(C::_TIFF_COMP, $options);
     }
 
+    /**
+     * @param $rx
+     * @param null $ry
+     * @return mixed
+     */
     public function setResolution($rx, $ry = null)
     {
         if (is_null($ry)) {
@@ -46,6 +66,11 @@ trait CairoOptions
         }
     }
 
+    /**
+     * @param $px
+     * @param null $py
+     * @return mixed
+     */
     public function scalePagesTo($px, $py = null)
     {
         if (is_null($py)) {
@@ -58,6 +83,11 @@ trait CairoOptions
         }
     }
 
+    /**
+     * @param $x
+     * @param $y
+     * @return mixed
+     */
     public function cropAreaOrigin($x, $y)
     {
         $this->setOption(C::_CROP_X, $x);
@@ -65,6 +95,11 @@ trait CairoOptions
         return $this->setOption(C::_CROP_Y, $y);
     }
 
+    /**
+     * @param $width
+     * @param null $height
+     * @return mixed
+     */
     public function cropAreaSize($width, $height = null)
     {
         if (is_null($height)) {
@@ -77,41 +112,68 @@ trait CairoOptions
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function useCropBox()
     {
         return $this->setFlag(C::_CROP_BOX);
     }
 
+    /**
+     * @return mixed
+     */
     public function noCrop()
     {
         return $this->setFlag(C::_NO_CROP);
     }
 
+    /**
+     * @return mixed
+     */
     public function monochrome()
     {
         return $this->setFlag(C::_MONO);
     }
 
+    /**
+     * @return mixed
+     */
     public function grayscale()
     {
         return $this->setFlag(C::_GRAY);
     }
 
+    /**
+     * @return mixed
+     */
     public function transparentBg()
     {
         return $this->setFlag(C::_TRANSP);
     }
 
+    /**
+     * @param $options
+     * @return mixed
+     */
     public function setAntiAlias($options)
     {
         return $this->setOption(C::_ANTI_ALIAS, $options);
     }
 
+    /**
+     * @param $profile
+     * @return mixed
+     */
     public function setIccProfile($profile)
     {
         return $this->setOption(C::_ICC, $profile);
     }
 
+    /**
+     * @param $level
+     * @return $this
+     */
     public function setPostScriptLevel($level)
     {
         if (in_array($level, $this->postScriptLevelFlags()))
@@ -120,6 +182,9 @@ trait CairoOptions
             return $this;
     }
 
+    /**
+     * @return array
+     */
     protected function cairoFlags()
     {
         return array_merge(
@@ -131,31 +196,49 @@ trait CairoOptions
         );
     }
 
+    /**
+     * @return array
+     */
     protected function cairoFormatFlags()
     {
         return [C::_PNG, C::_JPEG, C::_TIFF, C::_PS, C::_EPS, C::_PDF, C::_SVG];
     }
 
+    /**
+     * @return array
+     */
     protected function cropFlags()
     {
         return [C::_CROP_BOX];
     }
 
+    /**
+     * @return array
+     */
     protected function colorFlags()
     {
         return [C::_MONO, C::_GRAY];
     }
 
+    /**
+     * @return array
+     */
     protected function bgFlags()
     {
         return [C::_TRANSP];
     }
 
+    /**
+     * @return array
+     */
     protected function postScriptLevelFlags()
     {
         return [C::_LEVEL2, C::_LEVEL3];
     }
 
+    /**
+     * @return array
+     */
     protected function cairoOptions()
     {
         return array_merge(
@@ -168,6 +251,9 @@ trait CairoOptions
         );
     }
 
+    /**
+     * @return array
+     */
     protected function tiffOptions()
     {
         return [
@@ -175,15 +261,21 @@ trait CairoOptions
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function resolutionOptions()
     {
         return [
             C::_R  => C::T_DOUBLE,
             C::_RX => C::T_DOUBLE,
-            C::_RX => C::T_DOUBLE,
+            C::_RY => C::T_DOUBLE,
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function scaleOptions()
     {
         return [
@@ -193,6 +285,9 @@ trait CairoOptions
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function cropOptions()
     {
         return [
@@ -204,6 +299,9 @@ trait CairoOptions
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function antiAliasOptions()
     {
         return [
@@ -211,6 +309,9 @@ trait CairoOptions
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function iccProfileOptions()
     {
         return [

@@ -9,27 +9,39 @@
 
 use NcJoes\PopplerPhp\Config;
 use NcJoes\PopplerPhp\Constants as C;
+use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\PdfInfo;
 
+/**
+ * Class PdfInfoTest
+ */
 class PdfInfoTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @throws PopplerPhpException
+     */
     public function setUp()
     {
         parent::setUp();
         Config::setOutputDirectory(C::DFT);
     }
 
+    /**
+     * @throws PopplerPhpException
+     */
     public function testGetInfo()
     {
         $DS = DIRECTORY_SEPARATOR;
         $file = __DIR__.$DS."sources{$DS}test1.pdf";
         $pdf_info = new PdfInfo($file);
 
-        print_r($pdf_info->getInfo());
-        $this->assertArrayHasKey('pages', $pdf_info->getInfo());
+        static::assertArrayHasKey('pages', $pdf_info->getInfo());
         $this->addToAssertionCount(sizeof($pdf_info->getInfo()));
     }
 
+    /**
+     * @throws PopplerPhpException
+     */
     public function testGetters()
     {
         $DS = DIRECTORY_SEPARATOR;
