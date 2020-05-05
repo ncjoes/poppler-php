@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Poppler-PHP
  *
@@ -14,12 +15,12 @@ use NcJoes\PopplerPhp\PdfToHtml;
 /**
  * Class PdfToHtmlTest
  */
-class PdfToHtmlTest extends PHPUnit_Framework_TestCase
+class PdfToHtmlTest extends PHPUnit\Framework\TestCase
 {
     /**
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -31,7 +32,7 @@ class PdfToHtmlTest extends PHPUnit_Framework_TestCase
     {
         Config::setOutputDirectory(Config::getOutputDirectory(true), true);
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
         $pdfToHtml = new PdfToHtml($file);
 
         //$cairo->oddPagesOnly();
@@ -46,5 +47,4 @@ class PdfToHtmlTest extends PHPUnit_Framework_TestCase
         $pdfToHtml->oddPagesOnly();
         print_r($pdfToHtml->generate());
     }
-
 }

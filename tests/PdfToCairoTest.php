@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Poppler-PHP
  *
@@ -15,12 +16,12 @@ use NcJoes\PopplerPhp\PdfToCairo;
 /**
  * Class PdfToCairoTest
  */
-class PdfToCairoTest extends PHPUnit_Framework_TestCase
+class PdfToCairoTest extends PHPUnit\Framework\TestCase
 {
     /**
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -32,7 +33,7 @@ class PdfToCairoTest extends PHPUnit_Framework_TestCase
     {
         Config::setOutputDirectory(Config::getOutputDirectory());
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
         $cairo1 = new PdfToCairo($file);
         $cairo2 = clone $cairo1;
         $cairo3 = clone $cairo1;
@@ -58,5 +59,4 @@ class PdfToCairoTest extends PHPUnit_Framework_TestCase
         $cairo6->startFromPage(1)->stopAtPage(2);
         $cairo6->generateSVG();
     }
-
 }
