@@ -31,6 +31,9 @@ class PdfToCairoTest extends PHPUnit_Framework_TestCase
         $cairo1->firstPageOnly();
         $cairo1->generatePNG();
 
+        $cairo1->firstPageOnly();
+        $cairo1->setSuppressMessagesErrors();
+
         $cairo2->firstPageOnly();
         $cairo2->generateJPG();
 
