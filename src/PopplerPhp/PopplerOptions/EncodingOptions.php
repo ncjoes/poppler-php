@@ -11,23 +11,40 @@ namespace NcJoes\PopplerPhp\PopplerOptions;
 
 use NcJoes\PopplerPhp\Constants as C;
 
+/**
+ * Trait EncodingOptions
+ * @package NcJoes\PopplerPhp\PopplerOptions
+ */
 trait EncodingOptions
 {
+    /**
+     * @param $string
+     * @return mixed
+     */
     public function setEncoding($string)
     {
         return $this->setOption(C::_ENC, $string);
     }
 
+    /**
+     * @return mixed
+     */
     public function defaultEncoding()
     {
         return $this->unsetOption(C::_ENC);
     }
 
+    /**
+     * @return mixed
+     */
     public function listEncodings()
     {
         return $this->setFlag(C::_LISTENC);
     }
 
+    /**
+     * @return array
+     */
     protected function encodingOptions()
     {
         return [
@@ -35,6 +52,9 @@ trait EncodingOptions
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function encodingFlags()
     {
         return [C::_LISTENC];

@@ -11,13 +11,23 @@ namespace NcJoes\PopplerPhp\PopplerOptions;
 
 use NcJoes\PopplerPhp\Constants as C;
 
+/**
+ * Trait HelpFlags
+ * @package NcJoes\PopplerPhp\PopplerOptions
+ */
 trait HelpFlags
 {
+    /**
+     * @return mixed
+     */
     public function printHelpInfo()
     {
         return $this->setFlag(C::_H);
     }
 
+    /**
+     * @return array
+     */
     protected function helpFlags()
     {
         return [C::_H, C::_HELP, C::_HELP_, C::_HELP_Q];

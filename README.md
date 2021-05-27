@@ -42,7 +42,7 @@ Briefly,
 #### If you are using Ubuntu Distro, just install it from apt: 
 
 ```bash
-sudo apt-get install poppler-utils`
+sudo apt-get install poppler-utils
 ```
 
 #### For Windows Users

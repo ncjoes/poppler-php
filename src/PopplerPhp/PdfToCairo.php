@@ -35,10 +35,11 @@ class PdfToCairo extends PopplerUtil
      *
      * @param string $pdfFile
      * @param array $options
+     * @throws Exceptions\PopplerPhpException
      */
     public function __construct($pdfFile = '', array $options = [])
     {
-        $this->bin_file = C::PDF_TO_CAIRO;
+        $this->binFile = C::PDF_TO_CAIRO;
 
         return parent::__construct($pdfFile, $options);
     }
@@ -140,7 +141,7 @@ class PdfToCairo extends PopplerUtil
     public function generatePS()
     {
         $this->setOutputFormat(C::_PS);
-        $this->output_file_extension = $this->outputExtension();
+        $this->outputFileExtension = $this->outputExtension();
 
         return $this->generate();
     }
@@ -151,7 +152,7 @@ class PdfToCairo extends PopplerUtil
     public function generateEPS()
     {
         $this->setOutputFormat(C::_EPS);
-        $this->output_file_extension = $this->outputExtension();
+        $this->outputFileExtension = $this->outputExtension();
 
         return $this->generate();
     }
@@ -172,7 +173,7 @@ class PdfToCairo extends PopplerUtil
     public function generateSVG()
     {
         $this->setOutputFormat(C::_SVG);
-        $this->output_file_extension = $this->outputExtension();
+        $this->outputFileExtension = $this->outputExtension();
 
         return $this->generate();
     }

@@ -9,19 +9,31 @@
 
 use NcJoes\PopplerPhp\Config;
 use NcJoes\PopplerPhp\Constants as C;
+use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\PdfToCairo;
 
+/**
+ * Class PdfToCairoTest
+ */
 class PdfToCairoTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     *
+     */
     public function setUp()
     {
         parent::setUp();
     }
 
+    /**
+     * @throws PopplerPhpException
+     */
     public function testGeneratorMethods()
     {
         Config::setOutputDirectory(Config::getOutputDirectory());
-        $cairo1 = new PdfToCairo(__DIR__.'/sources/test1.pdf');
+        $DS = DIRECTORY_SEPARATOR;
+        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $cairo1 = new PdfToCairo($file);
         $cairo2 = clone $cairo1;
         $cairo3 = clone $cairo1;
         $cairo4 = clone $cairo1;

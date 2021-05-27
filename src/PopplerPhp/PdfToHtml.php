@@ -16,6 +16,10 @@ use NcJoes\PopplerPhp\PopplerOptions\EncodingOptions;
 use NcJoes\PopplerPhp\PopplerOptions\HtmlOptions;
 use NcJoes\PopplerPhp\PopplerOptions\PageRangeOptions;
 
+/**
+ * Class PdfToHtml
+ * @package NcJoes\PopplerPhp
+ */
 class PdfToHtml extends PopplerUtil
 {
     use PageRangeOptions;
@@ -24,16 +28,28 @@ class PdfToHtml extends PopplerUtil
     use EncodingOptions;
     use CredentialOptions;
 
+    /**
+     * @var
+     */
     private $products;
 
+    /**
+     * PdfToHtml constructor.
+     * @param string $pdfFile
+     * @param array $options
+     * @throws Exceptions\PopplerPhpException
+     */
     public function __construct($pdfFile = '', array $options = [])
     {
-        $this->bin_file = C::PDF_TO_HTML;
+        $this->binFile = C::PDF_TO_HTML;
         $this->setFlag(C::_Q);
 
         return parent::__construct($pdfFile, $options);
     }
 
+    /**
+     * @return array|mixed
+     */
     public function utilOptions()
     {
         return array_merge(
@@ -44,6 +60,9 @@ class PdfToHtml extends PopplerUtil
         );
     }
 
+    /**
+     * @return array|mixed
+     */
     public function utilFlags()
     {
         return array_merge(
@@ -52,6 +71,9 @@ class PdfToHtml extends PopplerUtil
         );
     }
 
+    /**
+     * @return array|mixed
+     */
     public function utilOptionRules()
     {
         return [
@@ -59,6 +81,9 @@ class PdfToHtml extends PopplerUtil
         ];
     }
 
+    /**
+     * @return array|mixed
+     */
     public function utilFlagRules()
     {
         return [
@@ -66,31 +91,50 @@ class PdfToHtml extends PopplerUtil
         ];
     }
 
+    /**
+     * @return $this
+     */
     public function defaultEncoding()
     {
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function listEncodings()
     {
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function oddPagesOnly()
     {
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function evenPagesOnly()
     {
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function firstPageOnly()
     {
         return $this;
     }
 
+    /**
+     * @param bool $regenerate
+     * @return string
+     */
     public function generate($regenerate = false)
     {
         if (is_null($this->products) or $regenerate == true) {
@@ -102,6 +146,9 @@ class PdfToHtml extends PopplerUtil
         return $this->products;
     }
 
+    /**
+     * @return mixed|string
+     */
     public function outputExtension()
     {
         return '.html';

@@ -9,6 +9,10 @@
 
 namespace NcJoes\PopplerPhp;
 
+/**
+ * Class Constants
+ * @package NcJoes\PopplerPhp
+ */
 abstract class Constants
 {
     //Poppler Utils Binaries
@@ -98,8 +102,8 @@ abstract class Constants
     const BIN_DIR     = 'ncjoes.poppler-php.bin_dir';
     const OUTPUT_DIR  = 'ncjoes.poppler-php.output_dir';
     const OUTPUT_NAME = 'ncjoes.poppler-php.output_name';
-    
-    const DEFAULT_OUTPUT_DIR = __DIR__.'/../../tests/results';
+
+    const DEFAULT_OUTPUT_DIR = 'tests/results';
 
     //Config Helpers
     const DFT = '_d_';
