@@ -16,7 +16,7 @@ jobs:
       with:
            php-version: ${{ matrix.php-versions }}
     - name: Install poppler
-      run: apt-get install poppler-utils
+      run: sudo apt-get install poppler-utils
     - name: check
       run: which pdfinfo
     - name: Install Dependencies
