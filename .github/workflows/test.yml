@@ -17,9 +17,10 @@ jobs:
            php-version: ${{ matrix.php-versions }}
     - name: Install poppler
       run: sudo apt-get install poppler-utils
-    - name: Link poppler utils
-      run: ln -s  /usr/bin vendor/bin/poppler
+    - name: Create poppler dir in vendor
     - name: Install Dependencies
       run: composer update --no-interaction --prefer-source
+    - name: Link poppler utils
+      run: ln -s  /usr/bin vendor/bin/poppler
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/bin/phpunit
