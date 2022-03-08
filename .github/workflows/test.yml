@@ -19,6 +19,8 @@ jobs:
       run: sudo apt-get install poppler-utils
     - name: check
       run: which pdfinfo
+    - name: check dir
+      run: ls -al /usr/bin | grep pdfinfo
     - name: Install Dependencies
       run: composer update --no-interaction --prefer-source
     - name: Execute tests (Unit and Feature tests) via PHPUnit
