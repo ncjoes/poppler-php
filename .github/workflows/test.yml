@@ -1,0 +1,25 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  run-tests:
+
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+            php-versions: ['7.4', '8.0']
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+           php-version: ${{ matrix.php-versions }}
+    - name: Install poppler
+      run: apt-get install poppler-utils
+    - name: check
+      run: which pdfinfo
+    - name: Install Dependencies
+      run: composer update --no-interaction --prefer-source
+    - name: Execute tests (Unit and Feature tests) via PHPUnit
+      run: vendor/bin/phpunit
