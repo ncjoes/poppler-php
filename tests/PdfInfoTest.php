@@ -10,10 +10,11 @@
 use NcJoes\PopplerPhp\PdfInfo;
 use NcJoes\PopplerPhp\Config;
 use NcJoes\PopplerPhp\Constants as C;
+use PHPUnit\Framework\TestCase;
 
-class PdfInfoTest extends PHPUnit_Framework_TestCase
+class PdfInfoTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Config::setOutputDirectory(C::DFT);
@@ -21,7 +22,7 @@ class PdfInfoTest extends PHPUnit_Framework_TestCase
 
     public function testGetInfo()
     {
-        $file = realpath(dirname(__FILE__).'\sources\test1.pdf');
+        $file = realpath(dirname(__FILE__). DIRECTORY_SEPARATOR . 'sources' . DIRECTORY_SEPARATOR .'test1.pdf');
         $pdf_info = new PdfInfo($file);
 
         //print_r($pdf_info->getInfo());

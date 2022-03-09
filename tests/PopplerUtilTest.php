@@ -11,10 +11,11 @@ use NcJoes\PopplerPhp\Config;
 use NcJoes\PopplerPhp\Constants as C;
 use NcJoes\PopplerPhp\PdfInfo;
 use NcJoes\PopplerPhp\PdfToCairo;
+use PHPUnit\Framework\TestCase;
 
-class PopplerUtilTest extends PHPUnit_Framework_TestCase
+class PopplerUtilTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -45,7 +46,7 @@ class PopplerUtilTest extends PHPUnit_Framework_TestCase
         $pdf->isoDates();
         $this->assertArrayHasKey('-isodates', $pdf->getFlags());
 
-        $this->assertContains('-f', $pdf->previewShellOptions());
+        $this->assertStringContainsString('-f', $pdf->previewShellOptions());
     }
 
     public function testOutputDirMethodSetterAndGetter()
