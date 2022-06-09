@@ -63,8 +63,17 @@ class PdfToCairo extends PopplerUtil
         return array_merge(
             $this->cairoFlags(),
             $this->pageRangeFlags(),
-            $this->helpFlags()
+            $this->helpFlags(),
+            $this->consoleFlags()
         );
+    }
+
+    /**
+     * @return array
+     */
+    public function consoleFlags()
+    {
+        return [C::_Q, C::_STDOUT];
     }
 
     /**
@@ -85,6 +94,15 @@ class PdfToCairo extends PopplerUtil
         return [
             'alt' => [],
         ];
+    }
+
+    /**
+     * @return PdfToCairo
+     * @throws Exceptions\PopplerPhpException
+     */
+    public function setSuppressMessagesErrors()
+    {
+        return $this->setFlag(C::_Q);
     }
 
     /**

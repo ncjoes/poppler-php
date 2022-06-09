@@ -69,7 +69,8 @@ class PdfInfo extends PopplerUtil
             $lines = explode("\n", $content);
             $info = [];
             foreach ($lines as $item) {
-                if (!empty($item)) {
+                $item = trim($item);
+                if (!empty(trim($item))) {
                     list($key, $value) = explode(":", $item);
                     $info[ str_replace([" "], ["_"], strtolower($key)) ] = trim(implode(':', (array)$value));
                 }
