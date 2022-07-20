@@ -11,6 +11,7 @@ use NcJoes\PopplerPhp\Config;
 use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\PdfToHtml;
 use PHPUnit\Framework\TestCase;
+use NcJoes\PopplerPhp\Constants as C;
 
 /**
  * Class PdfToHtmlTest

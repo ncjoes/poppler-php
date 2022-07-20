@@ -63,7 +63,7 @@ class PopplerUtilTest extends TestCase
         $pdf->isoDates();
         static::assertArrayHasKey('-isodates', $pdf->getFlags());
 
-        static::assertContains('-f', $pdf->previewShellOptions());
+        static::assertStringContainsString('-f', $pdf->previewShellOptions());
     }
 
     /**
@@ -101,7 +101,7 @@ class PopplerUtilTest extends TestCase
         $expected_bin = PHP_OS === 'WINNT' ? "{$q}".implode($DS, [$bin_dir, $bin_file])."{$q}" : $q.$bin_file.$q;
         $expected_src = "{$q}{$file}{$q}";
         $expected_dest = "{$q}{$output_dir}{$DS}{$output_file_prefix}{$q}";
-        static::assertRegExp("%^{$expected_bin} {$expected_src} {$expected_dest}$%", $pdf->previewShellCommand());
+        static::assertMatchesRegularExpression("%^{$expected_bin} {$expected_src} {$expected_dest}$%", $pdf->previewShellCommand());
     }
 
     /**
@@ -126,7 +126,7 @@ class PopplerUtilTest extends TestCase
         $expected_bin = PHP_OS === 'WINNT' ? "{$q}".implode($DS, [$bin_dir, $bin_file])."{$q}" : $q.$bin_file.$q;
         $expected_src = "{$q}{$file}{$q}";
         $expected_dest = "{$q}{$output_dir}{$DS}{$output_sub_dir}{$DS}{$output_file_prefix}{$q}";
-        static::assertRegExp("%^{$expected_bin} {$expected_src} {$expected_dest}$%", $pdf->previewShellCommand());
+        static::assertMatchesRegularExpression("%^{$expected_bin} {$expected_src} {$expected_dest}$%", $pdf->previewShellCommand());
     }
 
     /**
@@ -151,7 +151,7 @@ class PopplerUtilTest extends TestCase
         $expected_option_str = "-f {$expected_page_from} -l {$expected_page_to}";
         $expected_src = "{$q}{$file}{$q}";
 
-        static::assertRegExp("%^{$expected_bin} {$expected_option_str} {$expected_src}$%", $pdf->previewShellCommand());
+        static::assertMatchesRegularExpression("%^{$expected_bin} {$expected_option_str} {$expected_src}$%", $pdf->previewShellCommand());
     }
 
     /**
@@ -181,6 +181,6 @@ class PopplerUtilTest extends TestCase
         $expected_src = "{$q}{$file1}{$q} {$q}{$file2}{$q} {$q}{$file3}{$q}";
         $expected_dest = "{$q}{$output_dir}{$DS}{$output_sub_dir}{$DS}{$output_file_prefix}{$output_file_ext}{$q}";
 
-        static::assertRegExp("%^{$expected_bin} {$expected_src} {$expected_dest}$%", $pdf->previewShellCommand());
+        static::assertMatchesRegularExpression("%^{$expected_bin} {$expected_src} {$expected_dest}$%", $pdf->previewShellCommand());
     }
 }
