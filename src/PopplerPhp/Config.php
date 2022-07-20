@@ -78,7 +78,9 @@ class Config
      */
     public static function getBinDirectory()
     {
-        return self::get(C::BIN_DIR, H::parseDirName(realpath(__DIR__.'/../../vendor/bin/poppler')));
+        $win = self::get(C::BIN_DIR, H::parseDirName(realpath(__DIR__.'/../../vendor/bin/poppler')));
+
+        return PHP_OS === 'WINNT' ? $win : "";
     }
 
     /**

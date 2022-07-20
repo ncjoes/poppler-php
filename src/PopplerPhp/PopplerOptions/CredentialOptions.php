@@ -11,28 +11,49 @@ namespace NcJoes\PopplerPhp\PopplerOptions;
 
 use NcJoes\PopplerPhp\Constants as C;
 
+/**
+ * Trait CredentialOptions
+ * @package NcJoes\PopplerPhp\PopplerOptions
+ */
 trait CredentialOptions
 {
+    /**
+     * @param $pswd
+     * @return mixed
+     */
     public function setOwnerPassword($pswd)
     {
         return $this->setOption(C::_OPW, $pswd);
     }
 
+    /**
+     * @return mixed
+     */
     public function unsetOwnerPassword()
     {
         return $this->unsetOption(C::_OPW);
     }
 
+    /**
+     * @param $pswd
+     * @return mixed
+     */
     public function setUserPassword($pswd)
     {
         return $this->setOption(C::_UPW, $pswd);
     }
 
+    /**
+     * @return mixed
+     */
     public function unsetUserPassword()
     {
         return $this->unsetOption(C::_UPW);
     }
 
+    /**
+     * @return array
+     */
     protected function credentialOptions()
     {
         return [

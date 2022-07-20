@@ -9,6 +9,10 @@
 
 namespace NcJoes\PopplerPhp;
 
+/**
+ * Class Constants
+ * @package NcJoes\PopplerPhp
+ */
 abstract class Constants
 {
     //Poppler Utils Binaries
@@ -84,6 +88,9 @@ abstract class Constants
     const _ICC         = '-icc';
     const _LEVEL2      = '-level2';
     const _LEVEL3      = '-level3';
+    const _BBOX_LAYOUT = '-bbox-layout';
+    const _LAYOUT      = '-layout';
+    const _BOX         = '-box';
 
     //Poppler Option DataTypes
     const T_STRING  = 'string';
@@ -95,8 +102,8 @@ abstract class Constants
     const BIN_DIR     = 'ncjoes.poppler-php.bin_dir';
     const OUTPUT_DIR  = 'ncjoes.poppler-php.output_dir';
     const OUTPUT_NAME = 'ncjoes.poppler-php.output_name';
-    
-    const DEFAULT_OUTPUT_DIR = __DIR__.'/../../tests/results';
+
+    const DEFAULT_OUTPUT_DIR = 'tests/results';
 
     //Config Helpers
     const DFT = '_d_';

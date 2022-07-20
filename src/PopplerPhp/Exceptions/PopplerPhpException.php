@@ -9,7 +9,13 @@
 
 namespace NcJoes\PopplerPhp\Exceptions;
 
-class PopplerPhpException extends \Exception
+use Exception;
+
+/**
+ * Class PopplerPhpException
+ * @package NcJoes\PopplerPhp\Exceptions
+ */
+class PopplerPhpException extends Exception
 {
 
 }

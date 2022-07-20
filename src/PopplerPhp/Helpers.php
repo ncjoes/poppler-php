@@ -11,8 +11,16 @@ namespace NcJoes\PopplerPhp;
 
 use NcJoes\PopplerPhp\Constants as C;
 
+/**
+ * Class Helpers
+ * @package NcJoes\PopplerPhp
+ */
 abstract class Helpers
 {
+    /**
+     * @param $dir
+     * @return mixed
+     */
     public static function parseDirName($dir)
     {
         $dir = str_replace('/', C::DS, $dir);
@@ -20,6 +28,10 @@ abstract class Helpers
         return $dir;
     }
 
+    /**
+     * @param $name
+     * @return string|string[]|null
+     */
     public static function parseFileName($name)
     {
         $name = preg_replace("/[^A-Za-z0-9-_. ]/", '', $name);
@@ -27,6 +39,10 @@ abstract class Helpers
         return $name;
     }
 
+    /**
+     * @param $dir
+     * @return mixed
+     */
     public static function parseFileRealPath($dir)
     {
         $dir = str_replace('\\', C::DS, $dir);

@@ -11,28 +11,49 @@ namespace NcJoes\PopplerPhp\PopplerOptions;
 
 use NcJoes\PopplerPhp\Constants as C;
 
+/**
+ * Trait HtmlOptions
+ * @package NcJoes\PopplerPhp\PopplerOptions
+ */
 trait HtmlOptions
 {
+    /**
+     * @return mixed
+     */
     public function suppressConsoleOutput()
     {
         return $this->setFlag(C::_Q);
     }
 
+    /**
+     * @return mixed
+     */
     public function outputToConsole()
     {
         return $this->setFlag(C::_STDOUT);
     }
 
+    /**
+     * @param $ratio
+     * @return mixed
+     */
     public function setZoomRatio($ratio)
     {
         return $this->setOption(C::_ZOOM, $ratio);
     }
 
+    /**
+     * @return mixed
+     */
     public function defaultZoom()
     {
         return $this->unsetOption(C::_ZOOM);
     }
 
+    /**
+     * @param $string
+     * @return $this
+     */
     public function splashImageFormat($string)
     {
         if (in_array($string, ['png', 'jpg']))
@@ -41,61 +62,98 @@ trait HtmlOptions
             return $this;
     }
 
+    /**
+     * @param $float
+     * @return mixed
+     */
     public function setWordBreakThreshold($float)
     {
         return $this->setOption(C::_WBT, $float);
     }
 
+    /**
+     * @return mixed
+     */
     public function exchangePdfLinks()
     {
         return $this->setFlag(C::_P);
     }
 
+    /**
+     * @return mixed
+     */
     public function generateComplexDocument()
     {
         return $this->setFlag(C::_C);
     }
 
+    /**
+     * @return mixed
+     */
     public function generateSingleDocument()
     {
         return $this->setFlag(C::_S);
     }
 
+    /**
+     * @return mixed
+     */
     public function ignoreImages()
     {
         return $this->setFlag(C::_I);
     }
 
+    /**
+     * @return mixed
+     */
     public function noFrames()
     {
         return $this->setFlag(C::_NOFRAMES);
     }
 
+    /**
+     * @return mixed
+     */
     public function xmlOutput()
     {
         return $this->setFlag(C::_XML);
     }
 
+    /**
+     * @return mixed
+     */
     public function revealHiddenText()
     {
         return $this->setFlag(C::_HIDDEN);
     }
 
+    /**
+     * @return mixed
+     */
     public function unmergedParagraphs()
     {
         return $this->setFlag(C::_NOMERGE);
     }
 
+    /**
+     * @return mixed
+     */
     public function noDrm()
     {
         return $this->setFlag(C::_NODRM);
     }
 
+    /**
+     * @return mixed
+     */
     public function fullFontNames()
     {
         return $this->setFlag(C::_FONT_FN);
     }
 
+    /**
+     * @return array
+     */
     protected function htmlFlags()
     {
         return [
@@ -112,6 +170,9 @@ trait HtmlOptions
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function htmlOptions()
     {
         return [

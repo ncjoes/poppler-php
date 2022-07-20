@@ -8,21 +8,32 @@
  **/
 
 use NcJoes\PopplerPhp\Config;
-use NcJoes\PopplerPhp\Constants as C;
+use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\PdfToHtml;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class PdfToHtmlTest
+ */
 class PdfToHtmlTest extends TestCase
 {
+    /**
+     *
+     */
     public function setUp(): void
     {
         parent::setUp();
     }
 
+    /**
+     * @throws PopplerPhpException
+     */
     public function testGenerateMethod()
     {
         Config::setOutputDirectory(Config::getOutputDirectory(true), true);
-        $pdfToHtml = new PdfToHtml(__DIR__.'/sources/test1.pdf');
+        $DS = DIRECTORY_SEPARATOR;
+        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $pdfToHtml = new PdfToHtml($file);
 
         //$cairo->oddPagesOnly();
         //$cairo->generatePNG();
