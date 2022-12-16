@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Poppler-PHP
  *
@@ -16,7 +17,7 @@ use NcJoes\PopplerPhp\PdfInfo;
 /**
  * Class PdfInfoTest
  */
-class PdfInfoTest extends TestCase
+class PdfInfoTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @throws PopplerPhpException
@@ -33,7 +34,7 @@ class PdfInfoTest extends TestCase
     public function testGetInfo()
     {
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
         $pdf_info = new PdfInfo($file);
 
         static::assertArrayHasKey('pages', $pdf_info->getInfo());
@@ -46,7 +47,7 @@ class PdfInfoTest extends TestCase
     public function testGetters()
     {
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
         $pdf_info = new PdfInfo($file);
 
         $info = [
@@ -60,8 +61,8 @@ class PdfInfoTest extends TestCase
             'Page Size'         => $pdf_info->getPageSize(),
             'PDF Version'       => $pdf_info->getPdfVersion(),
             'Producer'          => $pdf_info->getProducer(),
-            'Is Tagged?'        => (int)$pdf_info->isTagged(),
-            'Is Optimized'      => (int)$pdf_info->isOptimized(),
+            'Is Tagged?'        => (int) $pdf_info->isTagged(),
+            'Is Optimized'      => (int) $pdf_info->isOptimized(),
             'Page Width'        => $pdf_info->getPageWidth(),
             'Page Height'       => $pdf_info->getPageHeight(),
             'Unit'              => $pdf_info->getSizeUnit(),

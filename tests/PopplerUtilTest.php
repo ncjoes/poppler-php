@@ -19,7 +19,7 @@ use NcJoes\PopplerPhp\PdfUnite;
 /**
  * Class PopplerUtilTest
  */
-class PopplerUtilTest extends TestCase
+class PopplerUtilTest extends PHPUnit\Framework\TestCase
 {
     /**
      *
@@ -35,7 +35,7 @@ class PopplerUtilTest extends TestCase
     public function testSetOutputFileName()
     {
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
         $pdf = new PdfToCairo($file);
         $pdf->setOutputFilenamePrefix('different-name');
 
@@ -48,7 +48,7 @@ class PopplerUtilTest extends TestCase
     public function testMakeOptionsMethod()
     {
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
         $pdf = new PdfInfo($file);
 
         $pdf->startFromPage(10);
@@ -75,7 +75,7 @@ class PopplerUtilTest extends TestCase
         static::assertTrue(Config::isKeySet(C::OUTPUT_DIR));
 
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
         $cairo = new PdfToCairo($file);
 
         static::assertTrue($cairo->getOutputPath() != dirname($file));
@@ -88,7 +88,7 @@ class PopplerUtilTest extends TestCase
     {
         $q = PHP_OS === 'WINNT' ? "\"" : "'";
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
         $output_file_prefix = 'test-file';
 
         $pdf = new PdfToCairo($file);
@@ -98,7 +98,7 @@ class PopplerUtilTest extends TestCase
         $bin_file = C::PDF_TO_CAIRO;
         $output_dir = Config::getOutputDirectory();
 
-        $expected_bin = PHP_OS === 'WINNT' ? "{$q}".implode($DS, [$bin_dir, $bin_file])."{$q}" : $q.$bin_file.$q;
+        $expected_bin = PHP_OS === 'WINNT' ? "{$q}" . implode($DS, [$bin_dir, $bin_file]) . "{$q}" : $q . $bin_file . $q;
         $expected_src = "{$q}{$file}{$q}";
         $expected_dest = "{$q}{$output_dir}{$DS}{$output_file_prefix}{$q}";
         static::assertMatchesRegularExpression("%^{$expected_bin} {$expected_src} {$expected_dest}$%", $pdf->previewShellCommand());
@@ -111,7 +111,7 @@ class PopplerUtilTest extends TestCase
     {
         $q = PHP_OS === 'WINNT' ? "\"" : "'";
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
         $output_file_prefix = 'test-file';
 
         $pdf = new PdfToCairo($file);
@@ -123,7 +123,7 @@ class PopplerUtilTest extends TestCase
         $output_dir = Config::getOutputDirectory();
         $output_sub_dir = $pdf->getOutputSubDir();
 
-        $expected_bin = PHP_OS === 'WINNT' ? "{$q}".implode($DS, [$bin_dir, $bin_file])."{$q}" : $q.$bin_file.$q;
+        $expected_bin = PHP_OS === 'WINNT' ? "{$q}" . implode($DS, [$bin_dir, $bin_file]) . "{$q}" : $q . $bin_file . $q;
         $expected_src = "{$q}{$file}{$q}";
         $expected_dest = "{$q}{$output_dir}{$DS}{$output_sub_dir}{$DS}{$output_file_prefix}{$q}";
         static::assertMatchesRegularExpression("%^{$expected_bin} {$expected_src} {$expected_dest}$%", $pdf->previewShellCommand());
@@ -136,7 +136,7 @@ class PopplerUtilTest extends TestCase
     {
         $q = PHP_OS === 'WINNT' ? "\"" : "'";
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
 
         $expected_page_from = 1;
         $expected_page_to = 2;
@@ -147,7 +147,7 @@ class PopplerUtilTest extends TestCase
         $bin_dir = Config::getBinDirectory();
         $bin_file = C::PDF_INFO;
 
-        $expected_bin = PHP_OS === 'WINNT' ? "{$q}".implode($DS, [$bin_dir, $bin_file])."{$q}" : $q.$bin_file.$q;
+        $expected_bin = PHP_OS === 'WINNT' ? "{$q}" . implode($DS, [$bin_dir, $bin_file]) . "{$q}" : $q . $bin_file . $q;
         $expected_option_str = "-f {$expected_page_from} -l {$expected_page_to}";
         $expected_src = "{$q}{$file}{$q}";
 
@@ -161,9 +161,9 @@ class PopplerUtilTest extends TestCase
     {
         $q = PHP_OS === 'WINNT' ? "\"" : "'";
         $DS = DIRECTORY_SEPARATOR;
-        $file1 = __DIR__.$DS."sources{$DS}test1.pdf";
-        $file2 = __DIR__.$DS."sources{$DS}test2.pdf";
-        $file3 = __DIR__.$DS."sources{$DS}test3.pdf";
+        $file1 = __DIR__ . $DS . "sources{$DS}test1.pdf";
+        $file2 = __DIR__ . $DS . "sources{$DS}test2.pdf";
+        $file3 = __DIR__ . $DS . "sources{$DS}test3.pdf";
         $output_file_prefix = "test-unite";
 
         $pdf = new PdfUnite([$file1, $file2, $file3]);
@@ -177,7 +177,7 @@ class PopplerUtilTest extends TestCase
         $output_sub_dir = $pdf->getOutputSubDir();
         $output_file_ext = $pdf->outputExtension();
 
-        $expected_bin = PHP_OS === 'WINNT' ? "{$q}".implode($DS, [$bin_dir, $bin_file])."{$q}" : $q.$bin_file.$q;
+        $expected_bin = PHP_OS === 'WINNT' ? "{$q}" . implode($DS, [$bin_dir, $bin_file]) . "{$q}" : $q . $bin_file . $q;
         $expected_src = "{$q}{$file1}{$q} {$q}{$file2}{$q} {$q}{$file3}{$q}";
         $expected_dest = "{$q}{$output_dir}{$DS}{$output_sub_dir}{$DS}{$output_file_prefix}{$output_file_ext}{$q}";
 
