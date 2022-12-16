@@ -10,6 +10,7 @@
         }
     ],
     "require" : {
+        "php" : ">=8",
         "illuminate/config" : "^9.44",
         "illuminate/support" : "^9.44"
     },
