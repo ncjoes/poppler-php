@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Poppler-PHP
  *
@@ -16,7 +17,7 @@ use NcJoes\PopplerPhp\Constants as C;
 /**
  * Class PdfToHtmlTest
  */
-class PdfToHtmlTest extends TestCase
+class PdfToHtmlTest extends PHPUnit\Framework\TestCase
 {
     /**
      *
@@ -33,7 +34,7 @@ class PdfToHtmlTest extends TestCase
     {
         Config::setOutputDirectory(Config::getOutputDirectory(true), true);
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
         $pdfToHtml = new PdfToHtml($file);
 
         //$cairo->oddPagesOnly();
@@ -50,5 +51,4 @@ class PdfToHtmlTest extends TestCase
         $outputPath = $pdfToHtml->getOutputPath();
         $this->assertFileExists($outputPath . C::DS . 'test1.html');
     }
-
 }

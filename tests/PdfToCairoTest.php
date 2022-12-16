@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Poppler-PHP
  *
@@ -16,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class PdfToCairoTest
  */
-class PdfToCairoTest extends TestCase
+class PdfToCairoTest extends PHPUnit\Framework\TestCase
 {
     /**
      *
@@ -33,7 +34,7 @@ class PdfToCairoTest extends TestCase
     {
         Config::setOutputDirectory(Config::getOutputDirectory());
         $DS = DIRECTORY_SEPARATOR;
-        $file = __DIR__.$DS."sources{$DS}test1.pdf";
+        $file = __DIR__ . $DS . "sources{$DS}test1.pdf";
         $cairo1 = new PdfToCairo($file);
         $cairo2 = clone $cairo1;
         $cairo3 = clone $cairo1;
@@ -74,5 +75,4 @@ class PdfToCairoTest extends TestCase
         $outputPath = $cairo6->getOutputPath();
         $this->assertFileExists($outputPath . C::DS . 'test1.svg');
     }
-
 }

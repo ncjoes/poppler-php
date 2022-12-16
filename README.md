@@ -5,12 +5,12 @@
 PopplerPhp is a complete and very flexible PHP wrapper for [Poppler-utils](http://poppler.freedesktop.org/).
 This package is brought to you so you can use php and poppler-utils to extract contents from, and convert your pdf files to any of these formats:
 
-*   HTML
-*   JPG, PNG, TIFF
-*   PostScript (PS)
-*   Encapsulated PostScript (EPS)
-*   Scalable Vector Graphic (SVG)
-*   Plain Text
+- HTML
+- JPG, PNG, TIFF
+- PostScript (PS)
+- Encapsulated PostScript (EPS)
+- Scalable Vector Graphic (SVG)
+- Plain Text
 
 You can also use this package to split pdf files, combine pdf files, and detach embedded items from pdf files using within your php scripts.
 With the `NcJoes\PopplerPhp\PdfInfo` class, you can query meta-data of any pdf file.
@@ -36,19 +36,21 @@ Or add this line to your `composer.json`
 ```
 
 ### Dependencies
-In order to use Poppler-PHP, you need to install Poppler. Depending of your configuration, please follow the instructions at 
+
+In order to use Poppler-PHP, you need to install Poppler. Depending of your configuration, please follow the instructions at
 [http://poppler.freedesktop.org/](http://poppler.freedesktop.org/). You will also need to configure your PHP environment to enable shell access.
 
 Briefly,
 
-#### If you are using Ubuntu Distro, just install it from apt: 
+#### If you are using Ubuntu Distro, just install it from apt:
 
 ```bash
 sudo apt-get install poppler-utils
 ```
 
 #### For Windows Users
-First download poppler-utils for windows here <http://blog.alivate.com.au/poppler-windows/>. 
+
+First download poppler-utils for windows here <http://blog.alivate.com.au/poppler-windows/>.
 
 Extract the downloaded archive and copy the contents of the `bin` directory to `your-project-path/vendor/bin/poppler/`.
 
@@ -147,6 +149,7 @@ print_r($pdfToHtml->generate()); //html string
 ```
 
 ### License
+
 The PopplerPHP package is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 ### Feedback & Contribute
