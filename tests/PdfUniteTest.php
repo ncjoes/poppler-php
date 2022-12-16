@@ -4,36 +4,34 @@ use NcJoes\PopplerPhp\Config;
 use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\PdfInfo;
 use NcJoes\PopplerPhp\PdfUnite;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class PdfUniteTest
  */
-class PdfUniteTest extends PHPUnit_Framework_TestCase
+class PdfUniteTest extends PHPUnit\Framework\TestCase
 {
 
     /**
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
 
-    /**
-     * @expectedException NcJoes\PopplerPhp\Exceptions\PopplerPhpException
-     */
     public function testConstructorThrowsExceptionIfSrcPdfFilesIsEmpty()
     {
+        $this->expectException(NcJoes\PopplerPhp\Exceptions\PopplerPhpException::class);
+        $DS = DIRECTORY_SEPARATOR;
         new PdfUnite([]);
     }
 
-    /**
-     * @expectedException NcJoes\PopplerPhp\Exceptions\PopplerPhpException
-     */
     public function testConstructorThrowsExceptionIfSingleSrcPdfFileIsGiven()
     {
+        $this->expectException(NcJoes\PopplerPhp\Exceptions\PopplerPhpException::class);
         $DS = DIRECTORY_SEPARATOR;
-        new PdfUnite([__DIR__.$DS."sources{$DS}test3.pdf"]);
+        new PdfUnite([__DIR__ . $DS . "sources{$DS}test3.pdf"]);
     }
 
     /**
@@ -42,9 +40,9 @@ class PdfUniteTest extends PHPUnit_Framework_TestCase
     public function testGenerate()
     {
         $DS = DIRECTORY_SEPARATOR;
-        $file1 = __DIR__.$DS."sources{$DS}test1.pdf";
-        $file2 = __DIR__.$DS."sources{$DS}test2.pdf";
-        $file3 = __DIR__.$DS."sources{$DS}test3.pdf";
+        $file1 = __DIR__ . $DS . "sources{$DS}test1.pdf";
+        $file2 = __DIR__ . $DS . "sources{$DS}test2.pdf";
+        $file3 = __DIR__ . $DS . "sources{$DS}test3.pdf";
         $output_file_prefix = "test-unite";
 
         $pdf_unite = new PdfUnite([$file1, $file2, $file3]);
@@ -60,5 +58,4 @@ class PdfUniteTest extends PHPUnit_Framework_TestCase
         $pdf_info = new PdfInfo($expected_output_file);
         static::assertEquals(16 * 3, intval($pdf_info->getNumOfPages()));
     }
-
 }
