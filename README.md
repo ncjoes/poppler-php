@@ -1,6 +1,6 @@
 # PopplerPhp: Comprehensive PHP wrapper for Poppler-utils
 
-[![Build Status](https://github.com/42coders/poppler-php/actions/workflows/test.yml/badge.svg)](https://github.com/42coders/poppler-php/actions/workflows/test.yml)
+[![Build Status](https://github.com/ncjoes/poppler-php/actions/workflows/test.yml/badge.svg)](https://github.com/ncjoes/poppler-php/actions/workflows/test.yml)
 
 PopplerPhp is a complete and very flexible PHP wrapper for [Poppler-utils](http://poppler.freedesktop.org/).
 This package is brought to you so you can use php and poppler-utils to extract contents from, and convert your pdf files to any of these formats:
