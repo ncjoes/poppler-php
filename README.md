@@ -1,5 +1,7 @@
 # PopplerPhp: Comprehensive PHP wrapper for Poppler-utils
 
+[![Build Status](https://github.com/42coders/poppler-php/actions/workflows/test.yml/badge.svg)](https://github.com/42coders/poppler-php/actions/workflows/test.yml)
+
 PopplerPhp is a complete and very flexible PHP wrapper for [Poppler-utils](http://poppler.freedesktop.org/).
 This package is brought to you so you can use php and poppler-utils to extract contents from, and convert your pdf files to any of these formats:
 
@@ -60,6 +62,21 @@ Brew is a famous package manager on OS/X : http://brew.sh/ (aptitude style).
 
 ```bash
 brew install poppler
+```
+
+### Running unit tests
+#### On macOS
+After installing poppler, create a simbolic link the `vendor/bin/poppler` which points
+to the directory containing the poppler executables for example: `/usr/local/Cellar/poppler/22.02.0/bin`
+
+In the root of the project run:
+```shell
+ ln -s  /usr/local/Cellar/poppler/22.02.0/bin vendor/bin/poppler
+```
+
+To find the directory where the poppler executables are run the following command:
+```shell
+ls -al /usr/local/bin | grep pdfinfo
 ```
 
 ### Usage

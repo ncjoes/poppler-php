@@ -4,34 +4,31 @@ use NcJoes\PopplerPhp\Config;
 use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\PdfInfo;
 use NcJoes\PopplerPhp\PdfUnite;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class PdfUniteTest
  */
-class PdfUniteTest extends PHPUnit_Framework_TestCase
+class PdfUniteTest extends TestCase
 {
 
     /**
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
 
-    /**
-     * @expectedException NcJoes\PopplerPhp\Exceptions\PopplerPhpException
-     */
     public function testConstructorThrowsExceptionIfSrcPdfFilesIsEmpty()
     {
+        $this->expectException(NcJoes\PopplerPhp\Exceptions\PopplerPhpException::class);
         new PdfUnite([]);
     }
 
-    /**
-     * @expectedException NcJoes\PopplerPhp\Exceptions\PopplerPhpException
-     */
     public function testConstructorThrowsExceptionIfSingleSrcPdfFileIsGiven()
     {
+        $this->expectException(NcJoes\PopplerPhp\Exceptions\PopplerPhpException::class);
         $DS = DIRECTORY_SEPARATOR;
         new PdfUnite([__DIR__.$DS."sources{$DS}test3.pdf"]);
     }

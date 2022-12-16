@@ -9,18 +9,19 @@
 
 use NcJoes\PopplerPhp\Config;
 use NcJoes\PopplerPhp\Constants as C;
+use PHPUnit\Framework\TestCase;
 use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\PdfInfo;
 
 /**
  * Class PdfInfoTest
  */
-class PdfInfoTest extends PHPUnit_Framework_TestCase
+class PdfInfoTest extends TestCase
 {
     /**
      * @throws PopplerPhpException
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Config::setOutputDirectory(C::DFT);

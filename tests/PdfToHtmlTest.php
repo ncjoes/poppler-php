@@ -10,16 +10,18 @@
 use NcJoes\PopplerPhp\Config;
 use NcJoes\PopplerPhp\Exceptions\PopplerPhpException;
 use NcJoes\PopplerPhp\PdfToHtml;
+use PHPUnit\Framework\TestCase;
+use NcJoes\PopplerPhp\Constants as C;
 
 /**
  * Class PdfToHtmlTest
  */
-class PdfToHtmlTest extends PHPUnit_Framework_TestCase
+class PdfToHtmlTest extends TestCase
 {
     /**
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -44,7 +46,9 @@ class PdfToHtmlTest extends PHPUnit_Framework_TestCase
         $pdfToHtml->generateSingleDocument();
         $pdfToHtml->noFrames();
         $pdfToHtml->oddPagesOnly();
-        print_r($pdfToHtml->generate());
+        $pdfToHtml->generate();
+        $outputPath = $pdfToHtml->getOutputPath();
+        $this->assertFileExists($outputPath . C::DS . 'test1.html');
     }
 
 }
