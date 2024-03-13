@@ -15,12 +15,12 @@ use NcJoes\PopplerPhp\PdfToCairo;
 /**
  * Class PdfToCairoTest
  */
-class PdfToCairoTest extends PHPUnit_Framework_TestCase
+class PdfToCairoTest extends PHPUnit\Framework\TestCase
 {
     /**
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }

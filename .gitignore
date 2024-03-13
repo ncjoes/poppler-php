@@ -1,3 +1,6 @@
 /vendor/
 /nbproject/
 /.idea
+composer.lock
+
+.phpunit.result.cache

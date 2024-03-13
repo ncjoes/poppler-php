@@ -14,12 +14,12 @@ use NcJoes\PopplerPhp\PdfToHtml;
 /**
  * Class PdfToHtmlTest
  */
-class PdfToHtmlTest extends PHPUnit_Framework_TestCase
+class PdfToHtmlTest extends PHPUnit\Framework\TestCase
 {
     /**
      *
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }

@@ -15,12 +15,12 @@ use NcJoes\PopplerPhp\PdfInfo;
 /**
  * Class PdfInfoTest
  */
-class PdfInfoTest extends PHPUnit_Framework_TestCase
+class PdfInfoTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @throws PopplerPhpException
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         Config::setOutputDirectory(C::DFT);
